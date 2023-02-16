@@ -8,7 +8,7 @@ import {
 // import "./font-icons.css";
 
 /* tslint:disable */
-export let template1: string =
+export let  template1: string =
   '<g xmlns="http://www.w3.org/2000/svg" id="Server" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">    <path d="M6,11 L30,11 C31.1045695,11 32,10.1045695 32,9 L32,5 C32,3.8954305 31.1045695,3 30,3 L6,3 C4.8954305,3 4,3.8954305 4,5 L4,9 C4,10.1045695 4.8954305,11 6,11 Z" id="Stroke-61" stroke="#5C90DF" stroke-width="2" fill="#C6D9F6"/>    <path d="M6,19 L30,19 C31.1045695,19 32,18.1045695 32,17 L32,13 C32,11.8954305 31.1045695,11 30,11 L6,11 C4.8954305,11 4,11.8954305 4,13 L4,17 C4,18.1045695 4.8954305,19 6,19 Z" id="Stroke-61-Copy" stroke="#5C90DF" stroke-width="2" fill="#C6D9F6"/>    <path d="M6,27 L30,27 C31.1045695,27 32,26.1045695 32,25 L32,21 C32,19.8954305 31.1045695,19 30,19 L6,19 C4.8954305,19 4,19.8954305 4,21 L4,25 C4,26.1045695 4.8954305,27 6,27 Z" id="Stroke-61-Copy-2" stroke="#5C90DF" stroke-width="2" fill="#C6D9F6"/>    <path d="M18,28 L18,33" id="Stroke-62" stroke="#5C90DF" stroke-width="2"/>    <path d="M5,33 L31,33" id="Stroke-64" stroke="#5C90DF" stroke-width="2" stroke-linecap="round"/>    <path d="M23,7 C23,7.552 22.552,8 22,8 C21.4473333,8 21,7.552 21,7 C21,6.448 21.4473333,6 22,6 C22.552,6 23,6.448 23,7" id="Fill-97" fill="#5C90DF" opacity="0.4"/>    <path d="M23,15 C23,15.552 22.552,16 22,16 C21.4473333,16 21,15.552 21,15 C21,14.448 21.4473333,14 22,14 C22.552,14 23,14.448 23,15" id="Fill-97-Copy-3" fill="#5C90DF" opacity="0.4"/>    <path d="M23,23 C23,23.552 22.552,24 22,24 C21.4473333,24 21,23.552 21,23 C21,22.448 21.4473333,22 22,22 C22.552,22 23,22.448 23,23" id="Fill-97-Copy-6" fill="#5C90DF" opacity="0.4"/>    <path d="M26,7 C26,7.552 25.552,8 25,8 C24.4473333,8 24,7.552 24,7 C24,6.448 24.4473333,6 25,6 C25.552,6 26,6.448 26,7" id="Fill-97-Copy" fill="#5C90DF" opacity="0.7"/>    <path d="M26,15 C26,15.552 25.552,16 25,16 C24.4473333,16 24,15.552 24,15 C24,14.448 24.4473333,14 25,14 C25.552,14 26,14.448 26,15" id="Fill-97-Copy-4" fill="#5C90DF" opacity="0.7"/>    <path d="M26,23 C26,23.552 25.552,24 25,24 C24.4473333,24 24,23.552 24,23 C24,22.448 24.4473333,22 25,22 C25.552,22 26,22.448 26,23" id="Fill-97-Copy-7" fill="#5C90DF" opacity="0.7"/>    <path d="M29,7 C29,7.552 28.552,8 28,8 C27.4473333,8 27,7.552 27,7 C27,6.448 27.4473333,6 28,6 C28.552,6 29,6.448 29,7" id="Fill-97-Copy-2" fill="#5C90DF"/>    <path d="M29,15 C29,15.552 28.552,16 28,16 C27.4473333,16 27,15.552 27,15 C27,14.448 27.4473333,14 28,14 C28.552,14 29,14.448 29,15" id="Fill-97-Copy-5" fill="#5C90DF"/>    <path d="M29,23 C29,23.552 28.552,24 28,24 C27.4473333,24 27,23.552 27,23 C27,22.448 27.4473333,22 28,22 C28.552,22 29,22.448 29,23" id="Fill-97-Copy-8" fill="#5C90DF"/>    <path d="M7,7 L18,7" id="Path-9" stroke="#FFFFFF" stroke-width="2"/>    <path d="M7,15 L18,15" id="Path-9-Copy" stroke="#FFFFFF" stroke-width="2"/>    <path d="M7,23 L18,23" id="Path-9-Copy-2" stroke="#FFFFFF" stroke-width="2"/></g>';
 export let template2: string =
   '<g xmlns="http://www.w3.org/2000/svg" id="Laptop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">    <path d="M4.23333333,23.0666667 L31.7666667,23.0666667 C31.8218951,23.0666667 31.8666667,23.0218951 31.8666667,22.9666667 L31.8666667,6.1 C31.8666667,6.04477153 31.8218951,6 31.7666667,6 L4.23333333,6 C4.17810486,6 4.13333333,6.04477153 4.13333333,6.1 L4.13333333,22.9666667 C4.13333333,23.0218951 4.17810486,23.0666667 4.23333333,23.0666667 Z" id="Fill-60" stroke="#5C90DF" stroke-width="2" fill="#C6D9F6"/>    <path d="M4,27.3333333 L32,27.3333333 C33.1045695,27.3333333 34,26.4379028 34,25.3333333 L34,23.1666667 C34,23.1114382 33.9552285,23.0666667 33.9,23.0666667 L2.1,23.0666667 C2.04477153,23.0666667 2,23.1114382 2,23.1666667 L2,25.3333333 C2,26.4379028 2.8954305,27.3333333 4,27.3333333 Z" id="Fill-60-Copy" stroke="#5C90DF" stroke-width="2" fill="#C6D9F6"/>    <path d="M14.4190267,25.2 L21.5809733,25.2 C21.9596713,25.2 22.2666667,24.8930046 22.2666667,24.5143066 L22.2666667,23.9286133 C22.2666667,23.8733848 22.2218951,23.8286133 22.1666667,23.8286133 L13.8333333,23.8286133 C13.7781049,23.8286133 13.7333333,23.8733848 13.7333333,23.9286133 L13.7333333,24.5143066 C13.7333333,24.8930046 14.0403287,25.2 14.4190267,25.2 Z" id="Fill-60-Copy" fill="#5C90DF"/></g>';
@@ -107,7 +107,7 @@ let nodes: NodeModel[] = [
         offset: { x: 1.4, y: 0.2 },
       },
     ],
-    ports: port2,
+    // ports: port2,
   },
   {
     id: "WorkStation2",
@@ -140,15 +140,16 @@ let nodes: NodeModel[] = [
     id: "RemoteController1",
     offsetX: 600,
     offsetY: 125,
+    width:550,
     shape: { type: "Native", content: template4 },
     annotations: [
       {
-        content: "Remote Controller",
-        margin: { bottom: 10 },
-        offset: { x: 0.5, y: 0 },
+        content: "Remote controller",
+        // margin: { bottom: 10 },
+        // offset: { x: 0.5, y: 0 },
       },
     ],
-    ports: portrc,
+    // ports: portrc,
   },
   {
     id: "modem3",
@@ -520,6 +521,8 @@ let targetDecorator: DecoratorModel = {
   style: { strokeColor: "#757575", fill: "#757575" },
 };
 let style: StrokeStyleModel = { strokeWidth: 2, strokeColor: "#757575" };
+let style1: StrokeStyleModel = { strokeWidth: 2, strokeColor: "#757575",strokeDashArray:"5.5" };
+// let style2: StrokeStyleModel = { strokeWidth: 2, strokeColor: "#757575" };
 
 // initializes the connector symbols to the UML Shapes in the symbol palette.
 let connectorSymbols: ConnectorModel[] = [
@@ -539,6 +542,32 @@ let connectorSymbols: ConnectorModel[] = [
     targetDecorator: targetDecorator,
     style: style,
   },
+  {
+    id: "link13",
+    type: "Bezier",
+    sourcePoint: sourcePoint,
+    targetPoint: targetPoint,
+    targetDecorator: targetDecorator,
+    style: style1,
+  },
+  {
+    id: "link13",
+    type: "Polyline",
+    sourcePoint: sourcePoint,
+    targetPoint: targetPoint,
+    targetDecorator: targetDecorator,
+    style: style,
+  },
+  {
+    id: "link13",
+    type: "Freehand",
+    sourcePoint: sourcePoint,
+    targetPoint: targetPoint,
+    targetDecorator: targetDecorator,
+    style: style,
+    cornerRadius:5,  
+  },
+  
 ];
 
 // Initializes the palettes to be displayed in the symbol palette.
@@ -549,7 +578,7 @@ let palettes: PaletteModel[] = [
     expanded: true,
     symbols: connectorSymbols,
     title: "Connectors",
-  },
+  }
 ];
 
 let dropElement: HTMLElement = document.getElementsByClassName(
