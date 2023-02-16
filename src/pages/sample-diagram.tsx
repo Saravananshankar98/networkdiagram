@@ -48,7 +48,7 @@ const SAMPLE_CSS = `#tooltipDiagramSection .image-pattern-style {
 #tooltipPropertySection .property-panel-header {
     margin-left: 10px;
 }`;
-let diagramInstance;
+let diagramInstance: any;
 
 let nodes: NodeModel[] = [
   {
@@ -285,18 +285,18 @@ let connectors: ConnectorModel[] = [
   { id: "connector12", sourceID: "node10", targetID: "node12" },
   { id: "connector13", sourceID: "node9", targetID: "node14" },
 ];
-// function getConnectorDefaults(connector, diagram) {
-//   connector.type = "Orthogonal";
-//   connector.style = { strokeWidth: 2 };
-//   return connector;
-// }
-// function getNodeDefaults(obj) {
-//   obj.offsetX += 0.5;
-//   obj.offsetY += 0.5;
-//   obj.constraints = NodeConstraints.Default | NodeConstraints.Tooltip;
-//   obj.style = { strokeWidth: 2 };
-//   return obj;
-// }
+function getConnectorDefaults(connector: { type: string; style: { strokeWidth: number; }; }, diagram: any) {
+  connector.type = "Orthogonal";
+  connector.style = { strokeWidth: 2 };
+  return connector;
+}
+function getNodeDefaults(obj: { offsetX: number; offsetY: number; constraints: number; style: { strokeWidth: number; }; }) {
+  obj.offsetX += 0.5;
+  obj.offsetY += 0.5;
+  obj.constraints = NodeConstraints.Default | NodeConstraints.Tooltip;
+  obj.style = { strokeWidth: 2 };
+  return obj;
+}
 function getcontent() {
   let tooltipContent = document.createElement("div");
   tooltipContent.innerHTML =
@@ -304,32 +304,32 @@ function getcontent() {
   return tooltipContent;
 }
 function Tooltip() {
-//   React.useEffect(() => {
-//     rendereComplete();
-//   }, []);
-  // const fields = { text: "text", value: "type" };
-//   function rendereComplete() {
-//     diagramInstance.fitToPage({ mode: "Width" });
-//   }
+  React.useEffect(() => {
+    rendereComplete();
+  }, []);
+  const fields = { text: "text", value: "type" };
+  function rendereComplete() {
+    diagramInstance.fitToPage({ mode: "Width" });
+  }
   return (
     <div className="control-pane">
-      {/* <div className="col-lg-8 control-section">
+      <div className="col-lg-8 control-section">
         <style>{SAMPLE_CSS}</style>
         <div
           id="tooltipDiagramSection"
           className="content-wrapper"
           style={{ width: "100%" }}
-        > */}
+        >
           <DiagramComponent
             id="diagram"
-            // ref={(diagram) => (diagramInstance = diagram)}
+            ref={(diagram) => (diagramInstance = diagram)}
             width={"100%"}
             height={"645px"}
             nodes={nodes}
             connectors={connectors}
             snapSettings={{ constraints: SnapConstraints.None }}
-            // getConnectorDefaults={getConnectorDefaults}
-            // getNodeDefaults={getNodeDefaults}
+            getConnectorDefaults={getConnectorDefaults}
+            getNodeDefaults={getNodeDefaults}
             tooltip={{
               content: getcontent(),
               position: "TopLeft",
@@ -340,11 +340,11 @@ function Tooltip() {
               },
             }}
           >
-            {/* <Inject services={[BpmnDiagrams]} /> */}
+            <Inject services={[BpmnDiagrams]} />
           </DiagramComponent>
         </div>
-    //   </div>
-    // </div>
+      </div>
+    </div>
   );
 }
 export default Tooltip;

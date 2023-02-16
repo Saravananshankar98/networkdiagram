@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@syncfusion/ej2-data": "^20.4.48",
     "@syncfusion/ej2-react-buttons": "^20.4.50",
     "@syncfusion/ej2-react-diagrams": "^20.4.50",
     "@syncfusion/ej2-react-inputs": "^20.4.48",
+    "@syncfusion/ej2-react-navigations": "^20.4.49",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
