@@ -1,21 +1,20 @@
 import "./App.css";
-// import ConnectorsPage from "./pages/connectors";
-// import MindMap from "./pages/mind-map";
-// import Radial from "./pages/radial-tree";
-// import NetworkShapes from "./pages/diagram";
-// import ShapesNode from "./pages/shapes-node";
+import HierarchicalModel from "./pages/herarical-view";
+import ConnectorsPage from "./pages/connectors";
+import MindMap from "./pages/mind-map";
+import Radial from "./pages/radial-tree";
+import NetworkShapes from "./pages/diagram";
 import SimpleDiagram from "./pages/simple-diagram";
-// import DiagramPage from "./pages/diagram";
-// import Tooltip from "./pages/sample-diagram";
+import Tooltip from "./pages/sample-diagram";
 
 function App() {
   return (
     <div className="App">
-      <h1>Network Diagram</h1>
-      {/* <DiagramPage /> */}
+      {/* <h1>Network Diagram</h1> */}
       {/* <NetworkShapes/> */}
       {/* <Tooltip/> */}
-      <SimpleDiagram />
+      {/* <SimpleDiagram /> */}
+<HierarchicalModel/>
       {/* <MindMap/> */}
       {/* <Radial/> */}
       {/* <ConnectorsPage/> */}

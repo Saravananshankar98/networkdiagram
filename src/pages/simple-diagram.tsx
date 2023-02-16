@@ -11,7 +11,7 @@ function SimpleDiagram() {
     obj.style = { strokeWidth: 2 };
     obj.width = 180;
     obj.height = 60;
-    if (obj.id === "server" || obj.id === "pc2") {
+    if (obj.id === "server" || obj.id === "pc2"|| obj.id === "pc1" || obj.id === "Modem") {
       obj.shape = { type: "Basic", shape: "Rectangle" };
     } else {
       obj.shape = { type: "Flow", shape: "Terminator" };

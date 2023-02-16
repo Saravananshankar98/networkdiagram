@@ -8,7 +8,18 @@ export const nodes: NodeModel[] = [
     annotations: [
       {
         content: "server",
+        offset: {
+          x: 0.5,
+          y: 0.4
+      }
       },
+      {
+        content:"IP:192.1.1.1",
+        offset: {
+          x: 0.5,
+          y: 0.6
+      }
+      }
     ],
   },
   {
@@ -38,7 +49,17 @@ export const nodes: NodeModel[] = [
     annotations: [
       {
         content: "pc2",
-      },
+        offset: {
+          x: 0.5,
+          y: 0.4
+      }
+      },{
+        content:"IP:192.3.1.2",
+        offset: {
+          x: 0.5,
+          y: 0.6
+      }
+      }
     ],
   },
   {
@@ -47,9 +68,19 @@ export const nodes: NodeModel[] = [
     offsetY: 450,
     annotations: [
       {
-        content: `laptop-1 IP:192.1.1.1`,
-        width: 55,
+        content:"laptop-1",
+        offset: {
+          x: 0.5,
+          y: 0.4
+      }
       },
+      {
+        content:"IP:192.2.1.3",
+        offset: {
+          x: 0.5,
+          y: 0.6
+      }
+      }
     ],
   },
   {
@@ -59,7 +90,18 @@ export const nodes: NodeModel[] = [
     annotations: [
       {
         content: "laptop-2",
+        offset: {
+          x: 0.5,
+          y: 0.4
+      }
       },
+      {
+        content:"IP:190.2.1.3",
+        offset: {
+          x: 0.5,
+          y: 0.6
+      }
+      }
     ],
   },
   {
@@ -69,7 +111,18 @@ export const nodes: NodeModel[] = [
     annotations: [
       {
         content: "Smart Phone",
+        offset: {
+          x: 0.5,
+          y: 0.4
+      }
       },
+      {
+        content:"IP:190.3.1.2",
+        offset: {
+          x: 0.5,
+          y: 0.6
+      }
+      }
     ],
   },
   {
@@ -79,7 +132,18 @@ export const nodes: NodeModel[] = [
     annotations: [
       {
         content: "pc1",
+        offset: {
+          x: 0.5,
+          y: 0.4
+      }
       },
+      {
+        content:"IP:192.1.2.3",
+        offset: {
+          x: 0.5,
+          y: 0.6
+      }
+      }
     ],
   },
   {

@@ -4,13 +4,11 @@ import { StackPanel } from "@syncfusion/ej2-react-diagrams";
 import { PortVisibility } from "@syncfusion/ej2-react-diagrams";
 import { CheckBoxComponent } from "@syncfusion/ej2-react-buttons";
 let diagramInstance: any;
-//Initialize shape
 let shape = {
     type: "Basic",
     shape: "Rectangle",
     cornerRadius: 10
 };
-//Initialize Diagram Nodes
 let nodes = [
     { id: "node1", annotations: [{ content: "Promotion" }] },
     { id: "node2", annotations: [{ content: "Lead" }] },
@@ -19,7 +17,6 @@ let nodes = [
     { id: "node5", annotations: [{ content: "Opportunity" }] },
     { id: "node6", offsetX: 540, offsetY: 290, excludeFromLayout: true }
 ];
-//Initialize Diagram connectors
 let connectors = [
     { id: "connectr", sourceID: "node1", targetID: "node2" },
     {
@@ -102,79 +99,6 @@ const SAMPLE_CSS = `.image-pattern-style {
     }`;
 function ConnectorsPage() {
 
-    React.useEffect(() => {
-      // updateSampleSection();
-      rendereComplete();
-  }, []);
-
-    // function lock() {
-    //     let lock = document.getElementById("lock");
-    //     for (let i = 0; i < diagramInstance.connectors.length; i++) {
-    //         connector = diagramInstance.connectors[i];
-    //         if (lock.checked) {
-    //             connector.constraints &= ~(ConnectorConstraints.DragSourceEnd |
-    //                 ConnectorConstraints.DragTargetEnd |
-    //                 ConnectorConstraints.DragSegmentThumb);
-    //             connector.constraints |= ConnectorConstraints.ReadOnly;
-    //         }
-    //         else {
-    //             connector.constraints |=
-    //                 ConnectorConstraints.Default & ~ConnectorConstraints.ReadOnly;
-    //         }
-    //         diagramInstance.dataBind();
-    //     }
-    // }
-    function rendereComplete() {
-        diagramInstance.fitToPage();
-        // document.getElementById("appearance").onclick = (args:any) => {
-        //     let target = args.target;
-        //     let selectedElement = document.getElementsByClassName("e-selected-style");
-        //     if (selectedElement.length) {
-        //         selectedElement[0].classList.remove("e-selected-style");
-        //     }
-        //     if (target.className === "image-pattern-style") {
-        //         switch (target.id) {
-        //             case "normalconnector1":
-        //                 defaultConnectorStyle("Straight", target);
-        //                 break;
-        //             case "normalconnector2":
-        //                 defaultConnectorStyle("Orthogonal", target);
-        //                 break;
-        //             case "normalconnector3":
-        //                 defaultConnectorStyle("Bezier", target);
-        //                 break;
-        //             case "connector1withstroke":
-        //                 applyConnectorStyle(false, false, false, "Straight", target);
-        //                 break;
-        //             case "connector2withstroke":
-        //                 applyConnectorStyle(false, false, false, "Orthogonal", target);
-        //                 break;
-        //             case "connector3withstroke":
-        //                 applyConnectorStyle(false, false, false, "Bezier", target);
-        //                 break;
-        //             case "connector1withdasharray":
-        //                 applyConnectorStyle(true, false, false, "Straight", target);
-        //                 break;
-        //             case "connector2withdasharray":
-        //                 applyConnectorStyle(true, false, false, "Orthogonal", target);
-        //                 break;
-        //             case "connector3withdasharray":
-        //                 applyConnectorStyle(true, false, false, "Bezier", target);
-        //                 break;
-        //             case "cornerradious":
-        //                 applyConnectorStyle(false, false, true, "Orthogonal", target);
-        //                 break;
-        //             case "sourcedecorator":
-        //                 applyConnectorStyle(false, true, false, "Straight", target);
-        //                 break;
-        //             case "sourcedecoratorwithdasharray":
-        //                 applyConnectorStyle(true, true, false, "Straight", target);
-        //                 break;
-        //         }
-        //     }
-        // };
-    }
-    //Customize the content of the node
     function setNodeTemplate() {
         let canvas = new StackPanel();
         canvas.children = [];
@@ -187,7 +111,6 @@ function ConnectorsPage() {
         canvas.children.push(getTextElement("Smart Contents", "#db8ec9"));
         return canvas;
     }
-    //creation of the TextElement.
     function getTextElement(text: string, color: string) {
         let textElement = new TextElement();
         textElement.id = randomId();
@@ -202,7 +125,6 @@ function ConnectorsPage() {
         textElement.relativeMode = "Object";
         return textElement;
     }
-    //creation of Port for Node.
     function getPorts(obj:any) {
         if (obj.id === "node2") {
             let node2Ports = [
@@ -260,64 +182,7 @@ function ConnectorsPage() {
             return ports;
         }
     }
-    //ConnectorStyle customization
-    function applyConnectorStyle(dashedLine: boolean, sourceDec: boolean, isRounded: boolean, type: string, target: any) {
-        for (let i = 0; i < diagramInstance.connectors.length; i++) {
-            diagramInstance.connectors[i].style.strokeWidth = 2;
-            diagramInstance.connectors[i].type = type;
-            if (isRounded) {
-                diagramInstance.connectors[i].cornerRadius = 5;
-            }
-            if (sourceDec) {
-                diagramInstance.connectors[i].sourceDecorator = {
-                    style: {
-                        strokeColor: "#6f409f",
-                        fill: "#6f409f",
-                        strokeWidth: 2
-                    },
-                    shape: "Circle"
-                };
-            }
-            else {
-                diagramInstance.connectors[i].sourceDecorator = { shape: "None" };
-            }
-            if (dashedLine) {
-                diagramInstance.connectors[i].style.strokeDashArray = "5,5";
-            }
-            else {
-                diagramInstance.connectors[i].style.strokeDashArray = "";
-            }
-            diagramInstance.connectors[i].targetDecorator = {
-                style: {
-                    strokeColor: "#6f409f",
-                    fill: "#6f409f",
-                    strokeWidth: 2
-                },
-                shape: "Arrow"
-            };
-            diagramInstance.dataBind();
-        }
-        target.classList.add("e-selected-style");
-    }
-    //ConnectorStyle customization
-    function defaultConnectorStyle(type:any, target:any) {
-        for (let i = 0; i < diagramInstance.connectors.length; i++) {
-            diagramInstance.connectors[i].style.strokeWidth = 1;
-            diagramInstance.connectors[i].type = type;
-            diagramInstance.connectors[i].sourceDecorator = { shape: "None" };
-            diagramInstance.connectors[i].style.strokeDashArray = "";
-            diagramInstance.connectors[i].targetDecorator = {
-                style: {
-                    strokeColor: "#6f409f",
-                    fill: "#6f409f",
-                    strokeWidth: 1
-                },
-                shape: "Arrow"
-            };
-            diagramInstance.dataBind();
-        }
-        target.classList.add("e-selected-style");
-    }
+
     return (<div className="control-pane diagram-control-pane">
       <style>{SAMPLE_CSS}</style>
       <div className="col-lg-9 control-section">
@@ -326,17 +191,14 @@ function ConnectorsPage() {
             constraints: SelectorConstraints.ConnectorSourceThumb |
                 SelectorConstraints.ConnectorTargetThumb
         }} 
-    //Configrues hierarchical tree layout
     layout={{
             type: "HierarchicalTree",
             orientation: "LeftToRight",
             verticalSpacing: 75,
             margin: { left: 30, right: 0, top: 0, bottom: 0 }
         }} snapSettings={{ constraints: 0 }} 
-    //Sets the default values of nodes
     getNodeDefaults={(obj:any) => {
             if (obj.id !== "node1") {
-                //Set ports
                 obj.ports = getPorts(obj);
             }
             if (obj.id !== "node6") {
@@ -347,7 +209,6 @@ function ConnectorsPage() {
                 obj.height = 35;
             }
         }} 
-    //Sets the default values of connector
     getConnectorDefaults={(obj: { type: string; style: { strokeColor: string; strokeWidth: number; }; targetDecorator: { style: { strokeColor: string; fill: string; }; }; }) => {
             obj.type = "Bezier";
             obj.style.strokeColor = "#6f409f";
@@ -359,7 +220,6 @@ function ConnectorsPage() {
                 }
             };
         }} 
-    //Customize the content of the node
     setNodeTemplate={(obj: { id: string; }) => {
             if (obj.id === "node6") {
                 return setNodeTemplate();
@@ -369,73 +229,6 @@ function ConnectorsPage() {
             <Inject services={[HierarchicalTree]}/>
           </DiagramComponent>
         </div>
-      </div>
-      <div className="col-lg-3 property-section">
-        <div className="property-panel-header">Properties</div>
-        <div className="row property-panel-content" id="appearance">
-          <div className="row row-header">Appearance</div>
-          <div className="row" style={{ paddingTop: "8px" }}>
-            <div className="image-pattern-style" id="normalconnector1" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_1.png')",
-            marginRight: "3px"
-        }}/>
-            <div className="image-pattern-style" id="normalconnector2" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_2.png')",
-            margin: "0px 3px"
-        }}/>
-            <div className="image-pattern-style" id="normalconnector3" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_3.png')",
-            marginLeft: "3px"
-        }}/>
-          </div>
-          <div className="row" style={{ paddingTop: "8px" }}>
-            <div className="image-pattern-style" id="connector1withstroke" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_4.png')",
-            marginRight: "3px"
-        }}/>
-            <div className="image-pattern-style" id="connector2withstroke" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_5.png')",
-            margin: "0px 3px"
-        }}/>
-            <div className="image-pattern-style" id="connector3withstroke" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_6.png')",
-            marginLeft: "3px"
-        }}/>
-          </div>
-          <div className="row" style={{ paddingTop: "8px" }}>
-            <div className="image-pattern-style" id="connector1withdasharray" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_7.png')",
-            margin: "3px"
-        }}/>
-            <div className="image-pattern-style" id="connector2withdasharray" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_8.png')",
-            marginRight: "0px 3px"
-        }}/>
-            <div className="image-pattern-style" id="connector3withdasharray" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_9.png')",
-            marginLeft: "3px"
-        }}/>
-          </div>
-          <div className="row" style={{ paddingTop: "8px" }}>
-            <div className="image-pattern-style" id="cornerradious" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_10.png')",
-            marginRight: "3px"
-        }}/>
-            <div className="image-pattern-style" id="sourcedecorator" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_11.png')",
-            margin: "0px 3px"
-        }}/>
-            <div className="image-pattern-style" id="sourcedecoratorwithdasharray" style={{
-            backgroundImage: "url('src/diagram/Images/connector/Connectors_12.png')",
-            marginLeft: "3px"
-        }}/>
-          </div>
-        </div>
-        {/* <div className="row property-panel-content" style={{ paddingTop: "10px" }}>
-          <div className="row" style={{ paddingTop: "8px" }}>
-            <CheckBoxComponent checked={false} label="Lock" id="lock" change={lock.bind(this)}/>
-          </div>
-        </div> */}
       </div>
     </div>);
 }

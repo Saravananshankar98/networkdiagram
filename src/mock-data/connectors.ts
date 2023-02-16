@@ -11,12 +11,17 @@ export const connectors: ConnectorModel[] = [
       id: "connector3",
       sourceID: "wireless router",
       targetID: "pc2",
+      annotations: [{
+        content: 'Ethernet',
+        style: { fill: "white" } 
+    }]
     },
     {
       id: "connector4",
       sourceID: "wireless router",
       targetID: "pc1",
       type: "Bezier",
+      
     },
     {
       id: "connector5",
