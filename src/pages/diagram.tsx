@@ -494,7 +494,6 @@ let snapSettings: SnapSettingsModel = {
 };
 
 let symbols: NodeModel[] = [
-  //add the flow shapes to the symbol palette
   { id: "server", shape: { type: "Native", content: template1 } },
   { id: "workStation", shape: { type: "Native", content: template2 } },
   { id: "modem", shape: { type: "Native", content: template3 } },
@@ -522,9 +521,7 @@ let targetDecorator: DecoratorModel = {
 };
 let style: StrokeStyleModel = { strokeWidth: 2, strokeColor: "#757575" };
 let style1: StrokeStyleModel = { strokeWidth: 2, strokeColor: "#757575",strokeDashArray:"5.5" };
-// let style2: StrokeStyleModel = { strokeWidth: 2, strokeColor: "#757575" };
 
-// initializes the connector symbols to the UML Shapes in the symbol palette.
 let connectorSymbols: ConnectorModel[] = [
   {
     id: "link11",
@@ -570,7 +567,6 @@ let connectorSymbols: ConnectorModel[] = [
   
 ];
 
-// Initializes the palettes to be displayed in the symbol palette.
 let palettes: PaletteModel[] = [
   { id: "network", expanded: true, symbols: symbols, title: "Network Shapes" },
   {
@@ -580,10 +576,6 @@ let palettes: PaletteModel[] = [
     title: "Connectors",
   }
 ];
-
-let dropElement: HTMLElement = document.getElementsByClassName(
-  "control-fluid"
-)[0] as HTMLElement;
 
 const SAMPLE_CSS = `
 @font-face {
@@ -701,49 +693,9 @@ const SAMPLE_CSS = `
 `;
 
 function NetworkShapes() {
-  function btnClick(): boolean {
-    // document.getElementsByClassName('e-file-select-wrap')[0].querySelector('button').click();
-    return false;
-  }
-  function rendereComplete() {
-    diagramInstance.fitToPage();
-    // addEvents();
-  }
-  let id: number = 0;
-  function onUploadSuccess(arg: any): void {
-    let file1: any = arg.file;
-    let file: any = file1.rawFile;
-    let reader: FileReader = new FileReader();
-    reader.addEventListener("load", (event: any): void => {
-      let shape: NodeModel;
-      let shapeContent: string = event.target.result;
-      shape = {
-        id: "newshape" + id.toString(),
-        shape: { type: "Native", content: shapeContent },
-      };
-      symbolPaletteInstance.addPaletteItem("network", shape);
-    });
-    id++;
-    reader.readAsText(file);
-    uploadBoxInstance.clearAll();
-  }
 
   function getNodeDefaults(node: NodeModel): NodeModel {
-    // node.style.strokeColor = '#5C90DF';
-    // node.style.fill = 'transparent';
-    // if (node.annotations.length !== 0) {
-    //   node.annotations[0].style.color = 'black';
-    //   node.annotations[0].style.fontSize = 12;
-    //   node.annotations[0].style = {
-    //     textWrapping: 'NoWrap',
-    //   };
-    // }
-    // if (node.ports.length !== 0) {
-    //   for (let i: number = 0; i < node.ports.length; i++) {
-    //     node.ports[i].visibility = PortVisibility.Hidden;
-    //   }
-    // }
-    // if (node.shape.type === 'Native') {
+  
       if (node.id === 'Server1') {
         node.width = 50;
         node.height = 65;
@@ -776,12 +728,6 @@ function NetworkShapes() {
         node.height = 50;
       }
       (node.shape as Native).scale = 'Stretch';
-    // }
-    // if (node.shape.type === 'Text') {
-    //   node.width = 127;
-    //   node.height = 40;
-    //   node.style = { bold: true, fontSize: 16 };
-    // }
     if (
       node.id === 'connector1' || node.id === 'connector2' || node.id === 'connector3' ||
       node.id === 'connector4' || node.id === 'connector5' || node.id === 'connector6'
@@ -802,11 +748,7 @@ function NetworkShapes() {
       shape: 'Arrow', width: 8, height: 8,
       style: { fill: '#5C90DF', strokeColor: '#5C90DF' }
     };
-    // connector.style.strokeColor = '#5C90DF';
-    // if (connector.annotations.length !== 0) {
-    //   connector.annotations[0].style.fill = 'white';
-    // }
-    return connector;
+   return connector;
   }
 
   function getSymbolInfo(symbol: NodeModel): SymbolInfo {
@@ -819,9 +761,7 @@ function NetworkShapes() {
       symbol.height = 60;
       symbol.offsetX = 160;
       symbol.offsetY = 135;
-      // symbol.style.strokeColor = '#757575';
-      // symbol.style.fill = 'white';
-    } else {
+   } else {
       if (symbol.id === "remoteController") {
         symbol.width = 25;
       } else {
@@ -834,32 +774,6 @@ function NetworkShapes() {
     }
   }
 
-  function onFileRemove(args: RemovingEventArgs): void {
-    args.postRawFile = false;
-  }
-
-  // let isMobile: boolean;
-
-  // function addEvents(): void {
-  //   isMobile = window.matchMedia('(max-width:550px)').matches;
-  //   if (isMobile) {
-  //     // let paletteIcon: HTMLElement = document.getElementById('palette-icon');
-  //     // if (paletteIcon) {
-  //     //   paletteIcon.addEventListener('click', openPalette, false);
-  //     // }
-  //   }
-  // }
-  // function openPalette(): void {
-  //   // let paletteSpace: HTMLElement = document.getElementById('palette-space');
-  //   isMobile = window.matchMedia('(max-width:550px)').matches;
-  //   if (isMobile) {
-  //     if (!paletteSpace.classList.contains('sb-mobile-palette-open')) {
-  //       paletteSpace.classList.add('sb-mobile-palette-open');
-  //     } else {
-  //       paletteSpace.classList.remove('sb-mobile-palette-open');
-  //     }
-  //   }
-  // }
   return (
     <div className="control-pane">
       <style>{SAMPLE_CSS}</style>
@@ -875,9 +789,8 @@ function NetworkShapes() {
           <div id="palette-space" className="sb-mobile-palette">
             <SymbolPaletteComponent
               id="symbolpalette"
-              // ref={symbolpalette => (symbolPaletteInstance = symbolpalette)}
               expandMode="Multiple"
-              palettes={palettes} //set default value for Node.
+              palettes={palettes}
               getNodeDefaults={getSymbolDefaults}
               getSymbolInfo={getSymbolInfo}
               width={"100%"}
@@ -885,33 +798,12 @@ function NetworkShapes() {
               symbolHeight={48}
               symbolWidth={48}
             />
-            {/* <div id="dropArea">
-              <ButtonComponent
-                // ref={browse => (buttonInstance = browse)}
-                onClick={btnClick.bind(true)}
-                id="browse"
-                cssClass='e-primary'>Import SVG Files</ButtonComponent>
-              <UploaderComponent
-                id="uploadFiles"
-                type="file"
-                // ref={uploadFiles => (uploadBoxInstance = uploadFiles)}
-                asyncSettings={{
-                  saveUrl:
-                    "https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save",
-                  removeUrl:
-                    "https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove"
-                }}
-                success={onUploadSuccess}
-                removing={onFileRemove}
-                dropArea={dropElement}
-              />
-            </div> */}
+            
           </div>
 
           <div id="diagram-space" className="sb-mobile-diagram">
             <DiagramComponent
               id="diagram"
-              // ref={diagram => (diagramInstance = diagram)}
               width={"100%"}
               height={"100%"}
               nodes={nodes}

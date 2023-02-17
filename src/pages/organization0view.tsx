@@ -15,7 +15,7 @@ import {
   chiefExecutiveChartData
 } from "../mock-data/organization-chart";
 
-export interface EmployeeInfo {
+export interface ChiefExecutiveInfo {
   Role: string;
   color: string;
 }
@@ -26,7 +26,7 @@ let items: DataManager = new DataManager(
 
 function OrganizationChart() {
   function nodeDefaults(obj: Node, diagram: Diagram): Node {
-    obj.backgroundColor = (obj.data as EmployeeInfo).color;
+    obj.backgroundColor = (obj.data as ChiefExecutiveInfo).color;
     obj.style = { fill: "none", strokeColor: "none", color: "white" };
     obj.width = 120;
     obj.height = 60;
@@ -60,7 +60,7 @@ function OrganizationChart() {
             };
             nodeModel.annotations = [
               {
-                content: (data as EmployeeInfo).Role,
+                content: (data as ChiefExecutiveInfo).Role,
               },
             ];
           },

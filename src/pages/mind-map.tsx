@@ -46,21 +46,21 @@ function MindMap() {
   function nodeDefaults(obj: Node) {
     obj.constraints = NodeConstraints.Default & ~NodeConstraints.Drag;
     if (
-      (obj.data as EmployeeInfo).branch === "Left" ||
-      (obj.data as EmployeeInfo).branch === "Right" ||
-      (obj.data as EmployeeInfo).branch === "Root"
+      (obj.data as CareerPlaningInfo).branch === "Left" ||
+      (obj.data as CareerPlaningInfo).branch === "Right" ||
+      (obj.data as CareerPlaningInfo).branch === "Root"
     ) {
       obj.shape = { type: "Flow", shape: "Terminator" };
       obj.borderColor = "black"; /* tslint:disable:no-string-literal */
       obj.style = {
         fill:
-          (obj.data as EmployeeInfo).branch === "Root" ? "#161616" : "#2873e4",
+          (obj.data as CareerPlaningInfo).branch === "Root" ? "#161616" : "#2873e4",
         strokeColor: "none",
         strokeWidth: 2,
       };
       obj.annotations = [
         {
-          content: (obj.data as EmployeeInfo).Label,
+          content: (obj.data as CareerPlaningInfo).Label,
           style: { color: "white" },
           width: 800,
         },
@@ -72,8 +72,8 @@ function MindMap() {
     } else {
       let color: string; /* tslint:disable:no-string-literal */
       if (
-        (obj.data as EmployeeInfo).branch === "Right" ||
-        (obj.data as EmployeeInfo).branch === "subRight"
+        (obj.data as CareerPlaningInfo).branch === "Right" ||
+        (obj.data as CareerPlaningInfo).branch === "subRight"
       ) {
         color = "#8E44AD";
       } else {
@@ -91,7 +91,7 @@ function MindMap() {
       }
       obj.annotations = [
         {
-          content: (obj.data as EmployeeInfo).Label,
+          content: (obj.data as CareerPlaningInfo).Label,
           offset: { x: 0.5, y: 0 },
           verticalAlignment: "Bottom",
         },
@@ -106,15 +106,15 @@ function MindMap() {
     let sourceNode: Node = diagram.getObject(connector.sourceID) as Node;
     let targetNode: Node = diagram.getObject(connector.targetID) as Node;
     if (
-      (targetNode.data as EmployeeInfo).branch === "Right" ||
-      (targetNode.data as EmployeeInfo).branch === "subRight"
+      (targetNode.data as CareerPlaningInfo).branch === "Right" ||
+      (targetNode.data as CareerPlaningInfo).branch === "subRight"
     ) {
       connector.sourcePortID = sourceNode.ports[0].id;
       connector.targetPortID = targetNode.ports[1].id;
       connector.style = { strokeWidth: 5, strokeColor: "#8E44AD" };
     } else if (
-      (targetNode.data as EmployeeInfo).branch === "Left" ||
-      (targetNode.data as EmployeeInfo).branch === "subLeft"
+      (targetNode.data as CareerPlaningInfo).branch === "Left" ||
+      (targetNode.data as CareerPlaningInfo).branch === "subLeft"
     ) {
       connector.sourcePortID = sourceNode.ports[1].id;
       connector.targetPortID = targetNode.ports[0].id;
@@ -128,14 +128,14 @@ function MindMap() {
     <div>
       <DiagramComponent
         id="diagram"
-        style={{ width: "74%", height: "550px" }}
+        style={{paddingLeft:"40px", height: "550px" }}
         width={"100%"}
         height={"850px"}
         snapSettings={{ constraints: SnapConstraints.None }}
         layout={{
           type: "MindMap",
           getBranch: (node: NodeModel, nodes: NodeModel[]) => {
-            return ((node as Node).data as EmployeeInfo).branch;
+            return ((node as Node).data as CareerPlaningInfo).branch;
           },
           horizontalSpacing: 50,
         }}
@@ -158,7 +158,7 @@ function MindMap() {
   );
 }
 
-export interface EmployeeInfo {
+export interface CareerPlaningInfo {
   branch: string;
   color: string;
   Left: string;

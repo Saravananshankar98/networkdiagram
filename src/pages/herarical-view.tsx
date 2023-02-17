@@ -14,7 +14,7 @@ import {
 } from "@syncfusion/ej2-react-diagrams";
 import { hierarchicalTree } from "../mock-data/hierarchical-tree";
 
-export interface EmployeeInfo {
+export interface ElectricInfo {
   Name: string;
 }
 
@@ -65,7 +65,7 @@ function HierarchicalModel() {
             };
             nodeModel.annotations = [
               {
-                content: (data as EmployeeInfo).Name,
+                content: (data as ElectricInfo).Name,
               },
             ];
           },
