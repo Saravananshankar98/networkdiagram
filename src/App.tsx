@@ -13,11 +13,10 @@ function App() {
       {/* <h1>Network Diagram</h1> */}
       {/* <NetworkShapes/> */}
       {/* <Tooltip/> */}
-      {/* <SimpleDiagram /> */}
-<HierarchicalModel/>
+      <SimpleDiagram />
+{/* <HierarchicalModel/> */}
       {/* <MindMap/> */}
       {/* <Radial/> */}
-      {/* <ConnectorsPage/> */}
     </div>
   );
 }
