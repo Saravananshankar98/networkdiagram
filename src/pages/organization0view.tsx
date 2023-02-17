@@ -1,46 +1,37 @@
 import { DataManager } from "@syncfusion/ej2-data";
 import {
-    ConnectorModel,
-    DataBinding,
-    Diagram,
-    DiagramComponent, HierarchicalTree,
-    Inject,
-    LayoutAnimation,
-    Node,
-    NodeModel,
-    SnapConstraints,
+  ConnectorModel,
+  DataBinding,
+  Diagram,
+  DiagramComponent,
+  HierarchicalTree,
+  Inject,
+  LayoutAnimation,
+  Node,
+  NodeModel,
+  SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
-import React from "react";
-import { organizationChartData, chiefExecutiveChartData } from "../mock-data/organization-chart";
+import {
+  chiefExecutiveChartData
+} from "../mock-data/organization-chart";
+
 export interface EmployeeInfo {
   Role: string;
   color: string;
 }
 
+let items: DataManager = new DataManager(
+  chiefExecutiveChartData as unknown as JSON[]
+);
+
 function OrganizationChart() {
-    function nodeDefaults(obj: Node, diagram: Diagram): Node {
-        obj.backgroundColor = (obj.data as EmployeeInfo).color;
-        obj.style = { fill: "none", strokeColor: "none", color: "white" };
-        obj.expandIcon = {
-          height: 20,
-          width: 20,
-          shape: "None",
-          fill: "lightgray",
-          offset: { x: 0.5, y: 1 }
-        };
-        obj.expandIcon.verticalAlignment = "Center";
-        obj.expandIcon.margin = { left: 0, right: 0, top: 0, bottom: 0 };
-        obj.collapseIcon.offset = { x: 0.5, y: 1 };
-        obj.collapseIcon.verticalAlignment = "Center";
-        obj.collapseIcon.margin = { left: 0, right: 0, top: 0, bottom: 0 };
-        obj.collapseIcon.height = 20;
-        obj.collapseIcon.width = 20;
-        obj.collapseIcon.shape = "None";
-        obj.collapseIcon.fill = "lightgray";
-        obj.width = 120;
-        obj.height = 60;
-        return obj;
-      }
+  function nodeDefaults(obj: Node, diagram: Diagram): Node {
+    obj.backgroundColor = (obj.data as EmployeeInfo).color;
+    obj.style = { fill: "none", strokeColor: "none", color: "white" };
+    obj.width = 120;
+    obj.height = 60;
+    return obj;
+  }
 
   function connectorDefaults(
     connector: ConnectorModel,
@@ -48,7 +39,7 @@ function OrganizationChart() {
   ): ConnectorModel {
     connector.type = "Orthogonal";
     connector.constraints = 0;
-    connector.cornerRadius = 5;
+    connector.cornerRadius = 3;
     return connector;
   }
   return (
@@ -61,32 +52,30 @@ function OrganizationChart() {
         dataSourceSettings={{
           id: "Id",
           parentId: "Manager",
-          dataSource: new DataManager(chiefExecutiveChartData as unknown as JSON[]),
+          dataSource: items,
           doBinding: (nodeModel: NodeModel, data: object, diagram: Diagram) => {
             nodeModel.shape = {
               type: "Flow",
               shape: "Terminator",
-             
             };
             nodeModel.annotations = [
               {
                 content: (data as EmployeeInfo).Role,
-                margin: { left: 10, right: 10, top: 10, bottom: 10 },
               },
             ];
           },
         }}
         layout={{
           type: "OrganizationalChart",
-          verticalSpacing:50,
-          horizontalSpacing:80,
+          verticalSpacing: 50,
+          horizontalSpacing: 80,
           getLayoutInfo: (node: any, options: any) => {
             if (node.data["Role"] === "General Manager") {
-                options.assistants.push(options.children[0]);
-                options.children.splice(0, 1);
+              options.assistants.push(options.children[0]);
+              options.children.splice(0, 1);
             }
             if (!options.hasSubTree) {
-                options.type = "Right";
+              options.type = "Right";
             }
           },
         }}

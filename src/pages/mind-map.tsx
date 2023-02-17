@@ -1,434 +1,163 @@
-import * as ReactDOM from "react-dom";
-import * as React from "react";
+import { DataManager, Query } from "@syncfusion/ej2-data";
 import {
-  MindMap as MindMapModule,
-  HierarchicalTree,
   ConnectorConstraints,
-  ToolBase,
-  MouseEventArgs,
-  randomId,
-  ISelectionChangeEventArgs,
-  PointPort,
-  UserHandleModel,
-  SelectorConstraints,
-  SnapConstraints,
-  PointPortModel,
-  PortVisibility,
+  ConnectorModel,
+  DataBinding,
+  Diagram,
   DiagramComponent,
+  DiagramTools,
+  HierarchicalTree,
+  Inject,
+  MindMap as MindMapModule,
+  Node,
   NodeConstraints,
   NodeModel,
-  ConnectorModel,
-  Node,
-  Connector,
-  Diagram,
-  DiagramTools,
-  Inject,
-  DataBinding,
-  Side,
-  MarginModel,
-  HorizontalAlignment,
-  VerticalAlignment,
-  TextModel
+  PointPort,
+  PointPortModel,
+  PortVisibility,
+  SnapConstraints,
+  TextModel,
 } from "@syncfusion/ej2-react-diagrams";
-import { DataManager, Query } from "@syncfusion/ej2-data";
-import { mindMap } from '../mock-data/diagram-data';
+import { CareerPlaningData } from "../mock-data/mind-map";
 
 let items: DataManager = new DataManager(
-  mindMap as unknown as JSON[],
-  new Query().take(7)
+  CareerPlaningData as unknown as JSON[]
 );
 
-let diagramInstance: any;
-
 function MindMap() {
-  // function rendereComplete() {
-  //   diagramInstance.fitToPage();
-  // }
-  //creation of the Ports
   function getPort(): PointPortModel[] {
     let port: PointPortModel[] = [
       {
         id: "port1",
         offset: { x: 0, y: 0.5 },
         visibility: PortVisibility.Hidden,
-        style: { fill: "black" }
+        style: { fill: "black" },
       },
       {
         id: "port2",
         offset: { x: 1, y: 0.5 },
         visibility: PortVisibility.Hidden,
-        style: { fill: "black" }
-      }
+        style: { fill: "black" },
+      },
     ];
     return port;
   }
-  // function addNode(): NodeModel {
-  //   let obj: NodeModel = {};
-  //   obj.id = randomId();
-  //   obj.data = {};
-  //   (obj.data as EmployeeInfo).Label = "Node";
-  //   return obj;
-  // }
 
-  // function addConnector(source: NodeModel, target: NodeModel): ConnectorModel {
-  //   let connector: ConnectorModel = {};
-  //   connector.id = randomId();
-  //   connector.sourceID = source.id;
-  //   connector.targetID = target.id;
-  //   return connector;
-  // }
-  //Tool for Userhandles.
-//   function getTool(action: string): ToolBase {
-//     let tool: ToolBase;
-//     if (action === "leftHandle") {
-//       tool = new LeftExtendTool(diagramInstance.commandHandler);
-//     } else if (action === "rightHandle") {
-//       tool = new RightExtendTool(diagramInstance.commandHandler);
-//     } else if (action === "delete") {
-//       tool = new DeleteClick(diagramInstance.commandHandler);
-//     }
-//     return tool;
-//   }
+  function nodeDefaults(obj: Node) {
+    obj.constraints = NodeConstraints.Default & ~NodeConstraints.Drag;
+    if (
+      (obj.data as EmployeeInfo).branch === "Left" ||
+      (obj.data as EmployeeInfo).branch === "Right" ||
+      (obj.data as EmployeeInfo).branch === "Root"
+    ) {
+      obj.shape = { type: "Flow", shape: "Terminator" };
+      obj.borderColor = "black"; /* tslint:disable:no-string-literal */
+      obj.style = {
+        fill:
+          (obj.data as EmployeeInfo).branch === "Root" ? "#161616" : "#2873e4",
+        strokeColor: "none",
+        strokeWidth: 2,
+      };
+      obj.annotations = [
+        {
+          content: (obj.data as EmployeeInfo).Label,
+          style: { color: "white" },
+          width: 800,
+        },
+      ];
+      let port: PointPortModel[] = getPort();
+      for (let i: number = 0; i < port.length; i++) {
+        obj.ports.push(new PointPort(obj, "ports", port[i], true));
+      }
+    } else {
+      let color: string; /* tslint:disable:no-string-literal */
+      if (
+        (obj.data as EmployeeInfo).branch === "Right" ||
+        (obj.data as EmployeeInfo).branch === "subRight"
+      ) {
+        color = "#8E44AD";
+      } else {
+        color = "#3498DB";
+      }
+      obj.shape = { type: "Basic", shape: "Rectangle" };
+      obj.style = { fill: color, strokeWidth: 0 };
+      obj.minWidth = 140;
+      obj.height = 4;
+      obj.margin = { left: 10, right: 10, top: 10, bottom: 10 };
 
-  // class LeftExtendTool extends ToolBase {
-  //   public mouseDown(args: MouseEventArgs): void {
-  //     super.mouseDown(args);
-  //     this.inAction = true;
-  //   }
-  //   // public mouseUp(args: MouseEventArgs): void {
-  //   //   if (this.inAction) {
-  //   //     let selectedObject: any = this.commandHandler.getSelectedObject();
-  //   //     if (selectedObject[0]) {
-  //   //       if (selectedObject[0] instanceof Node) {
-  //   //         let node: NodeModel = addNode();
-  //   //         if ((selectedObject[0].data as EmployeeInfo).branch === "Root") {
-  //   //           (node.data as EmployeeInfo).branch = "Right";
-  //   //         } else if (
-  //   //           (selectedObject[0].data as EmployeeInfo).branch === "Right" ||
-  //   //           (selectedObject[0].data as EmployeeInfo).branch === "subRight"
-  //   //         ) {
-  //   //           (node.data as EmployeeInfo).branch = "subRight";
-  //   //         }
-  //   //         let connector: ConnectorModel = addConnector(selectedObject[0], node);
-  //   //         diagramInstance.clearSelection();
-  //   //         let nd: Node = diagramInstance.add(node) as Node;
-  //   //         diagramInstance.add(connector);
-  //   //         diagramInstance.doLayout();
-  //   //         diagramInstance.bringIntoView(nd.wrapper.bounds);
-  //   //         diagramInstance.startTextEdit(nd);
-  //   //       }
-  //   //     }
-  //   //   }
-  //   // }
-  // }
+      let port: PointPortModel[] = getPort();
+      for (let i: number = 0; i < port.length; i++) {
+        obj.ports.push(new PointPort(obj, "ports", port[i], true));
+      }
+      obj.annotations = [
+        {
+          content: (obj.data as EmployeeInfo).Label,
+          offset: { x: 0.5, y: 0 },
+          verticalAlignment: "Bottom",
+        },
+      ];
+    }
+    return obj;
+  }
 
-  // class RightExtendTool extends ToolBase {
-  //   //mouseDown event
-  //   public mouseDown(args: MouseEventArgs): void {
-  //     super.mouseDown(args);
-  //     this.inAction = true;
-  //   }
-  //   //mouseDown event
-  //   // public mouseUp(args: MouseEventArgs): void {
-  //   //   if (this.inAction) {
-  //   //     let selectedObject: any = this.commandHandler.getSelectedObject();
-  //   //     if (selectedObject[0]) {
-  //   //       if (selectedObject[0] instanceof Node) {
-  //   //         let node: NodeModel = addNode();
-  //   //         if ((selectedObject[0].data as EmployeeInfo).branch === "Root") {
-  //   //           (node.data as EmployeeInfo).branch = "Left";
-  //   //         } else if (
-  //   //           (selectedObject[0].data as EmployeeInfo).branch === "Left" ||
-  //   //           (selectedObject[0].data as EmployeeInfo).branch === "subLeft"
-  //   //         ) {
-  //   //           (node.data as EmployeeInfo).branch = "subLeft";
-  //   //         }
-  //   //         let connector: ConnectorModel = addConnector(selectedObject[0], node);
-  //   //         diagramInstance.clearSelection();
-  //   //         let nd: Node = diagramInstance.add(node) as Node;
-  //   //         diagramInstance.add(connector);
-  //   //         diagramInstance.doLayout();
-  //   //         diagramInstance.bringIntoView(nd.wrapper.bounds);
-  //   //         diagramInstance.startTextEdit(nd);
-  //   //       }
-  //   //     }
-  //   //   }
-  //   // }
-  // }
-  // class DeleteClick extends ToolBase {
-  //   //mouseDown event
-  //   public mouseDown(args: MouseEventArgs): void {
-  //     super.mouseDown(args);
-  //     this.inAction = true;
-  //   }
-  //   //mouseup event
-  //   // public mouseUp(args: MouseEventArgs): void {
-  //   //   if (this.inAction) {
-  //   //     let selectedObject: any = this.commandHandler.getSelectedObject();
-  //   //     if (selectedObject[0]) {
-  //   //       if (selectedObject[0] instanceof Node) {
-  //   //         let node: Node = selectedObject[0] as Node;
-  //   //         this.removeSubChild(node);
-  //   //       }
-  //   //       diagramInstance.doLayout();
-  //   //     }
-  //   //   }
-  //   // }
-  //   //Remove the subchild Elements
-  //   private removeSubChild(node: Node): void {
-  //     for (let i: number = node.outEdges.length - 1; i >= 0; i--) {
-  //       let connector: Connector = diagramInstance.getObject(
-  //         node.outEdges[i]
-  //       ) as Connector;
-  //       let childNode: Node = diagramInstance.getObject(
-  //         connector.targetID
-  //       ) as Node;
-  //       if (childNode.outEdges.length > 0) {
-  //         this.removeSubChild(childNode);
-  //       } else {
-  //         diagramInstance.remove(childNode);
-  //       }
-  //     }
-  //     diagramInstance.remove(node);
-  //   }
-  // }
-  // // hide the require userhandle.
-  // function hideUserHandle(name: string): void {
-  //   for (let handle of diagramInstance.selectedItems.userHandles) {
-  //     if (handle.name === name) {
-  //       handle.visible = false;
-  //     }
-  //   }
-  // }
-  // let leftarrow: string =
-  //   "M11.924,6.202 L4.633,6.202 L4.633,9.266 L0,4.633 L4.632,0 L4.632,3.551 L11.923,3.551 L11.923,6.202Z";
-  // let rightarrow: string =
-  //   "M0,3.063 L7.292,3.063 L7.292,0 L11.924,4.633 L7.292,9.266 L7.292,5.714 L0.001,5.714 L0.001,3.063Z";
-  // let deleteicon: string =
-  //   "M 7.04 22.13 L 92.95 22.13 L 92.95 88.8 C 92.95 91.92 91.55 94.58 88.76" +
-  //   "96.74 C 85.97 98.91 82.55 100 78.52 100 L 21.48 100 C 17.45 100 14.03 98.91 11.24 96.74 C 8.45 94.58 7.04" +
-  //   "91.92 7.04 88.8 z M 32.22 0 L 67.78 0 L 75.17 5.47 L 100 5.47 L 100 16.67 L 0 16.67 L 0 5.47 L 24.83 5.47 z";
+  function connectorDefaults(connector: any, diagram: Diagram): ConnectorModel {
+    connector.type = "Bezier";
+    connector.targetDecorator = { shape: "None" };
+    let sourceNode: Node = diagram.getObject(connector.sourceID) as Node;
+    let targetNode: Node = diagram.getObject(connector.targetID) as Node;
+    if (
+      (targetNode.data as EmployeeInfo).branch === "Right" ||
+      (targetNode.data as EmployeeInfo).branch === "subRight"
+    ) {
+      connector.sourcePortID = sourceNode.ports[0].id;
+      connector.targetPortID = targetNode.ports[1].id;
+      connector.style = { strokeWidth: 5, strokeColor: "#8E44AD" };
+    } else if (
+      (targetNode.data as EmployeeInfo).branch === "Left" ||
+      (targetNode.data as EmployeeInfo).branch === "subLeft"
+    ) {
+      connector.sourcePortID = sourceNode.ports[1].id;
+      connector.targetPortID = targetNode.ports[0].id;
+      connector.style = { strokeWidth: 5, strokeColor: "#3498DB" };
+    }
+    connector.constraints &= ~ConnectorConstraints.Select;
+    return connector;
+  }
 
-  // let leftuserhandle: UserHandleModel = setUserHandle(
-  //   //it is in dedicated line here.
-  //   "leftHandle",
-  //   leftarrow,
-  //   "Left",
-  //   1,
-  //   { top: 0, bottom: 0, left: 0, right: 10 },
-  //   "Left",
-  //   "Top"
-  // );
-  // let rightuserhandle: UserHandleModel = setUserHandle(
-  //   //it is in dedicated line here.
-  //   "rightHandle",
-  //   rightarrow,
-  //   "Right",
-  //   1,
-  //   { top: 0, bottom: 0, left: 10, right: 0 },
-  //   "Right",
-  //   "Top"
-  // );
-  // let deleteuserhandle: UserHandleModel = setUserHandle(
-  //   //it is in dedicated line here.
-  //   "delete",
-  //   deleteicon,
-  //   "Top",
-  //   0.5,
-  //   { top: 0, bottom: 10, left: 0, right: 0 },
-  //   "Center",
-  //   "Center"
-  // );
-  // let handle: UserHandleModel[] = [
-  //   leftuserhandle,
-  //   rightuserhandle,
-  //   deleteuserhandle
-  // ];
-  // // set and creation of the Userhandle.
-  // function setUserHandle( //it is in dedicated line here.
-  //   name: string,
-  //   pathData: string,
-  //   side: Side,
-  //   offset: number,
-  //   margin: MarginModel,
-  //   halignment: HorizontalAlignment,
-  //   valignment: VerticalAlignment
-  // ): UserHandleModel {
-  //   let userhandle: UserHandleModel = {
-  //     name: name,
-  //     pathData: pathData,
-  //     backgroundColor: "black",
-  //     pathColor: "white",
-  //     side: side,
-  //     offset: offset,
-  //     margin: margin,
-  //     horizontalAlignment: halignment,
-  //     verticalAlignment: valignment
-  //   };
-  //   return userhandle;
-  // }
-  //Change the Position of the UserHandle.
-  // function changeUserHandlePosition(change: string): void {
-  //   for (let handle of diagramInstance.selectedItems.userHandles) {
-  //     if (handle.name === "delete" && change === "leftHandle") {
-  //       applyHandle(
-  //         handle,
-  //         "Left",
-  //         1,
-  //         { top: 0, bottom: 0, left: 0, right: 10 },
-  //         "Left",
-  //         "Top"
-  //       );
-  //     } else if (handle.name === "delete" && change === "rightHandle") {
-  //       applyHandle(
-  //         handle,
-  //         "Right",
-  //         1,
-  //         { top: 0, bottom: 0, left: 10, right: 0 },
-  //         "Right",
-  //         "Top"
-  //       );
-  //     }
-  //   }
-  // }
   return (
-    <div className="control-pane">
-      <div className="control-section">
-        <div className="content-wrapper" style={{ width: "100%" }}>
-          <DiagramComponent
-            ref={diagram => (diagramInstance = diagram)}
-            id="diagram"
-            style={{ width: "74%", height: "550px", float: "left" }}
-            width={"100%"}
-            height={"550px"}
-            snapSettings={{ constraints: SnapConstraints.None }}
-            tool={DiagramTools.SingleSelect}
-            layout={{
-              type: "MindMap",
-              getBranch: (node: NodeModel, nodes: NodeModel[]) => {
-                return ((node as Node).data as EmployeeInfo).branch;
-              },
-              horizontalSpacing: 50
-            }}
-            dataSourceSettings={{
-              id: "id",
-              parentId: "parentId",
-              dataSource: items,
-              root: String(1)
-            }}
-            //sets node default value
-            getNodeDefaults={(obj: Node) => {
-              obj.constraints =
-                NodeConstraints.Default & ~NodeConstraints.Drag;
-              if (
-                (obj.data as EmployeeInfo).branch === "Left" ||
-                (obj.data as EmployeeInfo).branch === "Right" ||
-                (obj.data as EmployeeInfo).branch === "Root"
-              ) {
-                obj.shape = { type: "Basic", shape: "Ellipse" };
-                obj.borderColor =
-                  "black"; /* tslint:disable:no-string-literal */
-                obj.style = {
-                  fill:
-                    (obj.data as EmployeeInfo).branch === "Root"
-                      ? "#E74C3C"
-                      : "#F39C12",
-                  strokeColor: "none",
-                  strokeWidth: 2
-                };
-                obj.annotations = [
-                  {
-                    content: (obj.data as EmployeeInfo).Label,
-                    margin: { left: 10, right: 10, top: 10, bottom: 10 },
-                    style: { color: "white" }
-                  }
-                ];
-                let port: PointPortModel[] = getPort();
-                for (let i: number = 0; i < port.length; i++) {
-                  obj.ports.push(new PointPort(obj, "ports", port[i], true));
-                }
-              } else {
-                let color: string; /* tslint:disable:no-string-literal */
-                if (
-                  (obj.data as EmployeeInfo).branch === "Right" ||
-                  (obj.data as EmployeeInfo).branch === "subRight"
-                ) {
-                  color = "#8E44AD";
-                } else {
-                  color = "#3498DB";
-                }
-                obj.shape = { type: "Basic", shape: "Rectangle" };
-                obj.style = { fill: color, strokeWidth: 0 };
-                obj.minWidth = 100;
-                obj.height = 4;
-                let port: PointPortModel[] = getPort();
-                for (let i: number = 0; i < port.length; i++) {
-                  obj.ports.push(new PointPort(obj, "ports", port[i], true));
-                }
-                obj.annotations = [
-                  {
-                    content: (obj.data as EmployeeInfo).Label,
-                    offset: { x: 0.5, y: 0 },
-                    verticalAlignment: "Bottom"
-                  }
-                ];
-                (obj.shape as TextModel).margin = {
-                  left: 0,
-                  right: 0,
-                  top: 0,
-                  bottom: 0
-                };
-              }
-              return obj;
-            }}
-            //sets connector default value
-            getConnectorDefaults={(
-              connector: any,
-              diagram: Diagram
-            ) => {
-              connector.type = "Bezier";
-              connector.targetDecorator = { shape: "None" };
-              let sourceNode: Node = diagram.getObject(
-                connector.sourceID
-              ) as Node;
-              let targetNode: Node = diagram.getObject(
-                connector.targetID
-              ) as Node;
-              if (
-                (targetNode.data as EmployeeInfo).branch === "Right" ||
-                (targetNode.data as EmployeeInfo).branch === "subRight"
-              ) {
-                connector.sourcePortID = sourceNode.ports[0].id;
-                connector.targetPortID = targetNode.ports[1].id;
-                connector.style = { strokeWidth: 5, strokeColor: "#8E44AD" };
-              } else if (
-                (targetNode.data as EmployeeInfo).branch === "Left" ||
-                (targetNode.data as EmployeeInfo).branch === "subLeft"
-              ) {
-                connector.sourcePortID = sourceNode.ports[1].id;
-                connector.targetPortID = targetNode.ports[0].id;
-                connector.style = { strokeWidth: 5, strokeColor: "#3498DB" };
-              }
-              connector.constraints &= ~ConnectorConstraints.Select;
-              return connector;
-            }}
-          >
-            <Inject
-              services={[DataBinding, MindMapModule, HierarchicalTree]}
-            />
-          </DiagramComponent>
-          <input
-            id="palette"
-            style={{ visibility: "hidden", position: "absolute" }}
-            type="color"
-            name="favcolor"
-            value="#000000"
-          />
-        </div>
-      </div>
+    <div>
+      <DiagramComponent
+        id="diagram"
+        style={{ width: "74%", height: "550px" }}
+        width={"100%"}
+        height={"850px"}
+        snapSettings={{ constraints: SnapConstraints.None }}
+        layout={{
+          type: "MindMap",
+          getBranch: (node: NodeModel, nodes: NodeModel[]) => {
+            return ((node as Node).data as EmployeeInfo).branch;
+          },
+          horizontalSpacing: 50,
+        }}
+        dataSourceSettings={{
+          id: "id",
+          parentId: "parentId",
+          dataSource: items,
+          root: String(1),
+        }}
+        getNodeDefaults={(obj: Node) => {
+          return nodeDefaults(obj);
+        }}
+        getConnectorDefaults={(connector: ConnectorModel, diagram: Diagram) => {
+          return connectorDefaults(connector, diagram);
+        }}
+      >
+        <Inject services={[DataBinding, MindMapModule]} />
+      </DiagramComponent>
     </div>
   );
 }
+
 export interface EmployeeInfo {
   branch: string;
   color: string;

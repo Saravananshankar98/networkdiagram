@@ -19,6 +19,7 @@ export interface EmployeeInfo {
 }
 
 function HierarchicalModel() {
+  
   function nodeDefaults(obj: Node, diagram: Diagram): Node {
     obj.style = {
       fill: "#659be5",

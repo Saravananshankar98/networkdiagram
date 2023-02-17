@@ -3,51 +3,7 @@ import {
     NodeConstraints, NodeModel, SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
 import * as React from "react";
-// import { updateSampleSection } from './sample-base';
-/**
- * Tooltip sample
- */
-const SAMPLE_CSS = `#tooltipDiagramSection .image-pattern-style {
-    background-color: white;
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 75px;
-    width: calc((100% - 12px) / 3);
-    cursor: pointer;
-    border: 1px solid #D5D5D5;
-    background-position: center;
-    float: left;
-}
 
-#tooltipDiagramSection .image-pattern-style:hover {
-    border-color: gray;
-    border-width: 2px;
-}
-
-#tooltipDiagramSection .row {
-    margin-left: 0px;
-    margin-right: 0px;
-}
-
-#tooltipDiagramSection .row-header {
-    font-size: 13px;
-    font-weight: 500;
-}
-
-#tooltipDiagramSection .e-selected-style {
-    border-color: #006CE6;
-    border-width: 2px;
-}
-
-#tooltipDiagramSection .e-checkbox-wrapper .e-label {
-    font-size: 12px;
-}
-.content-wrapper {
-    border: 1px solid #D7D7D7;
-}
-#tooltipPropertySection .property-panel-header {
-    margin-left: 10px;
-}`;
 let diagramInstance: any;
 
 let nodes: NodeModel[] = [
@@ -312,14 +268,7 @@ function Tooltip() {
     diagramInstance.fitToPage({ mode: "Width" });
   }
   return (
-    <div className="control-pane">
-      <div className="col-lg-8 control-section">
-        <style>{SAMPLE_CSS}</style>
-        <div
-          id="tooltipDiagramSection"
-          className="content-wrapper"
-          style={{ width: "100%" }}
-        >
+        <div>
           <DiagramComponent
             id="diagram"
             ref={(diagram) => (diagramInstance = diagram)}
@@ -343,8 +292,6 @@ function Tooltip() {
             <Inject services={[BpmnDiagrams]} />
           </DiagramComponent>
         </div>
-      </div>
-    </div>
   );
 }
 export default Tooltip;
