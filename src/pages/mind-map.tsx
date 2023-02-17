@@ -41,9 +41,9 @@ let items: DataManager = new DataManager(
 let diagramInstance: any;
 
 function MindMap() {
-  function rendereComplete() {
-    diagramInstance.fitToPage();
-  }
+  // function rendereComplete() {
+  //   diagramInstance.fitToPage();
+  // }
   //creation of the Ports
   function getPort(): PointPortModel[] {
     let port: PointPortModel[] = [
@@ -62,21 +62,21 @@ function MindMap() {
     ];
     return port;
   }
-  function addNode(): NodeModel {
-    let obj: NodeModel = {};
-    obj.id = randomId();
-    obj.data = {};
-    (obj.data as EmployeeInfo).Label = "Node";
-    return obj;
-  }
+  // function addNode(): NodeModel {
+  //   let obj: NodeModel = {};
+  //   obj.id = randomId();
+  //   obj.data = {};
+  //   (obj.data as EmployeeInfo).Label = "Node";
+  //   return obj;
+  // }
 
-  function addConnector(source: NodeModel, target: NodeModel): ConnectorModel {
-    let connector: ConnectorModel = {};
-    connector.id = randomId();
-    connector.sourceID = source.id;
-    connector.targetID = target.id;
-    return connector;
-  }
+  // function addConnector(source: NodeModel, target: NodeModel): ConnectorModel {
+  //   let connector: ConnectorModel = {};
+  //   connector.id = randomId();
+  //   connector.sourceID = source.id;
+  //   connector.targetID = target.id;
+  //   return connector;
+  // }
   //Tool for Userhandles.
 //   function getTool(action: string): ToolBase {
 //     let tool: ToolBase;
@@ -90,222 +90,207 @@ function MindMap() {
 //     return tool;
 //   }
 
-  class LeftExtendTool extends ToolBase {
-    public mouseDown(args: MouseEventArgs): void {
-      super.mouseDown(args);
-      this.inAction = true;
-    }
-    public mouseUp(args: MouseEventArgs): void {
-      if (this.inAction) {
-        let selectedObject: any = this.commandHandler.getSelectedObject();
-        if (selectedObject[0]) {
-          if (selectedObject[0] instanceof Node) {
-            let node: NodeModel = addNode();
-            if ((selectedObject[0].data as EmployeeInfo).branch === "Root") {
-              (node.data as EmployeeInfo).branch = "Right";
-            } else if (
-              (selectedObject[0].data as EmployeeInfo).branch === "Right" ||
-              (selectedObject[0].data as EmployeeInfo).branch === "subRight"
-            ) {
-              (node.data as EmployeeInfo).branch = "subRight";
-            }
-            let connector: ConnectorModel = addConnector(selectedObject[0], node);
-            diagramInstance.clearSelection();
-            let nd: Node = diagramInstance.add(node) as Node;
-            diagramInstance.add(connector);
-            diagramInstance.doLayout();
-            diagramInstance.bringIntoView(nd.wrapper.bounds);
-            diagramInstance.startTextEdit(nd);
-          }
-        }
-      }
-    }
-  }
+  // class LeftExtendTool extends ToolBase {
+  //   public mouseDown(args: MouseEventArgs): void {
+  //     super.mouseDown(args);
+  //     this.inAction = true;
+  //   }
+  //   // public mouseUp(args: MouseEventArgs): void {
+  //   //   if (this.inAction) {
+  //   //     let selectedObject: any = this.commandHandler.getSelectedObject();
+  //   //     if (selectedObject[0]) {
+  //   //       if (selectedObject[0] instanceof Node) {
+  //   //         let node: NodeModel = addNode();
+  //   //         if ((selectedObject[0].data as EmployeeInfo).branch === "Root") {
+  //   //           (node.data as EmployeeInfo).branch = "Right";
+  //   //         } else if (
+  //   //           (selectedObject[0].data as EmployeeInfo).branch === "Right" ||
+  //   //           (selectedObject[0].data as EmployeeInfo).branch === "subRight"
+  //   //         ) {
+  //   //           (node.data as EmployeeInfo).branch = "subRight";
+  //   //         }
+  //   //         let connector: ConnectorModel = addConnector(selectedObject[0], node);
+  //   //         diagramInstance.clearSelection();
+  //   //         let nd: Node = diagramInstance.add(node) as Node;
+  //   //         diagramInstance.add(connector);
+  //   //         diagramInstance.doLayout();
+  //   //         diagramInstance.bringIntoView(nd.wrapper.bounds);
+  //   //         diagramInstance.startTextEdit(nd);
+  //   //       }
+  //   //     }
+  //   //   }
+  //   // }
+  // }
 
-  class RightExtendTool extends ToolBase {
-    //mouseDown event
-    public mouseDown(args: MouseEventArgs): void {
-      super.mouseDown(args);
-      this.inAction = true;
-    }
-    //mouseDown event
-    public mouseUp(args: MouseEventArgs): void {
-      if (this.inAction) {
-        let selectedObject: any = this.commandHandler.getSelectedObject();
-        if (selectedObject[0]) {
-          if (selectedObject[0] instanceof Node) {
-            let node: NodeModel = addNode();
-            if ((selectedObject[0].data as EmployeeInfo).branch === "Root") {
-              (node.data as EmployeeInfo).branch = "Left";
-            } else if (
-              (selectedObject[0].data as EmployeeInfo).branch === "Left" ||
-              (selectedObject[0].data as EmployeeInfo).branch === "subLeft"
-            ) {
-              (node.data as EmployeeInfo).branch = "subLeft";
-            }
-            let connector: ConnectorModel = addConnector(selectedObject[0], node);
-            diagramInstance.clearSelection();
-            let nd: Node = diagramInstance.add(node) as Node;
-            diagramInstance.add(connector);
-            diagramInstance.doLayout();
-            diagramInstance.bringIntoView(nd.wrapper.bounds);
-            diagramInstance.startTextEdit(nd);
-          }
-        }
-      }
-    }
-  }
-  class DeleteClick extends ToolBase {
-    //mouseDown event
-    public mouseDown(args: MouseEventArgs): void {
-      super.mouseDown(args);
-      this.inAction = true;
-    }
-    //mouseup event
-    public mouseUp(args: MouseEventArgs): void {
-      if (this.inAction) {
-        let selectedObject: any = this.commandHandler.getSelectedObject();
-        if (selectedObject[0]) {
-          if (selectedObject[0] instanceof Node) {
-            let node: Node = selectedObject[0] as Node;
-            this.removeSubChild(node);
-          }
-          diagramInstance.doLayout();
-        }
-      }
-    }
-    //Remove the subchild Elements
-    private removeSubChild(node: Node): void {
-      for (let i: number = node.outEdges.length - 1; i >= 0; i--) {
-        let connector: Connector = diagramInstance.getObject(
-          node.outEdges[i]
-        ) as Connector;
-        let childNode: Node = diagramInstance.getObject(
-          connector.targetID
-        ) as Node;
-        if (childNode.outEdges.length > 0) {
-          this.removeSubChild(childNode);
-        } else {
-          diagramInstance.remove(childNode);
-        }
-      }
-      diagramInstance.remove(node);
-    }
-  }
-  //hide the require userhandle.
-  function hideUserHandle(name: string): void {
-    for (let handle of diagramInstance.selectedItems.userHandles) {
-      if (handle.name === name) {
-        handle.visible = false;
-      }
-    }
-  }
-  let leftarrow: string =
-    "M11.924,6.202 L4.633,6.202 L4.633,9.266 L0,4.633 L4.632,0 L4.632,3.551 L11.923,3.551 L11.923,6.202Z";
-  let rightarrow: string =
-    "M0,3.063 L7.292,3.063 L7.292,0 L11.924,4.633 L7.292,9.266 L7.292,5.714 L0.001,5.714 L0.001,3.063Z";
-  let deleteicon: string =
-    "M 7.04 22.13 L 92.95 22.13 L 92.95 88.8 C 92.95 91.92 91.55 94.58 88.76" +
-    "96.74 C 85.97 98.91 82.55 100 78.52 100 L 21.48 100 C 17.45 100 14.03 98.91 11.24 96.74 C 8.45 94.58 7.04" +
-    "91.92 7.04 88.8 z M 32.22 0 L 67.78 0 L 75.17 5.47 L 100 5.47 L 100 16.67 L 0 16.67 L 0 5.47 L 24.83 5.47 z";
+  // class RightExtendTool extends ToolBase {
+  //   //mouseDown event
+  //   public mouseDown(args: MouseEventArgs): void {
+  //     super.mouseDown(args);
+  //     this.inAction = true;
+  //   }
+  //   //mouseDown event
+  //   // public mouseUp(args: MouseEventArgs): void {
+  //   //   if (this.inAction) {
+  //   //     let selectedObject: any = this.commandHandler.getSelectedObject();
+  //   //     if (selectedObject[0]) {
+  //   //       if (selectedObject[0] instanceof Node) {
+  //   //         let node: NodeModel = addNode();
+  //   //         if ((selectedObject[0].data as EmployeeInfo).branch === "Root") {
+  //   //           (node.data as EmployeeInfo).branch = "Left";
+  //   //         } else if (
+  //   //           (selectedObject[0].data as EmployeeInfo).branch === "Left" ||
+  //   //           (selectedObject[0].data as EmployeeInfo).branch === "subLeft"
+  //   //         ) {
+  //   //           (node.data as EmployeeInfo).branch = "subLeft";
+  //   //         }
+  //   //         let connector: ConnectorModel = addConnector(selectedObject[0], node);
+  //   //         diagramInstance.clearSelection();
+  //   //         let nd: Node = diagramInstance.add(node) as Node;
+  //   //         diagramInstance.add(connector);
+  //   //         diagramInstance.doLayout();
+  //   //         diagramInstance.bringIntoView(nd.wrapper.bounds);
+  //   //         diagramInstance.startTextEdit(nd);
+  //   //       }
+  //   //     }
+  //   //   }
+  //   // }
+  // }
+  // class DeleteClick extends ToolBase {
+  //   //mouseDown event
+  //   public mouseDown(args: MouseEventArgs): void {
+  //     super.mouseDown(args);
+  //     this.inAction = true;
+  //   }
+  //   //mouseup event
+  //   // public mouseUp(args: MouseEventArgs): void {
+  //   //   if (this.inAction) {
+  //   //     let selectedObject: any = this.commandHandler.getSelectedObject();
+  //   //     if (selectedObject[0]) {
+  //   //       if (selectedObject[0] instanceof Node) {
+  //   //         let node: Node = selectedObject[0] as Node;
+  //   //         this.removeSubChild(node);
+  //   //       }
+  //   //       diagramInstance.doLayout();
+  //   //     }
+  //   //   }
+  //   // }
+  //   //Remove the subchild Elements
+  //   private removeSubChild(node: Node): void {
+  //     for (let i: number = node.outEdges.length - 1; i >= 0; i--) {
+  //       let connector: Connector = diagramInstance.getObject(
+  //         node.outEdges[i]
+  //       ) as Connector;
+  //       let childNode: Node = diagramInstance.getObject(
+  //         connector.targetID
+  //       ) as Node;
+  //       if (childNode.outEdges.length > 0) {
+  //         this.removeSubChild(childNode);
+  //       } else {
+  //         diagramInstance.remove(childNode);
+  //       }
+  //     }
+  //     diagramInstance.remove(node);
+  //   }
+  // }
+  // // hide the require userhandle.
+  // function hideUserHandle(name: string): void {
+  //   for (let handle of diagramInstance.selectedItems.userHandles) {
+  //     if (handle.name === name) {
+  //       handle.visible = false;
+  //     }
+  //   }
+  // }
+  // let leftarrow: string =
+  //   "M11.924,6.202 L4.633,6.202 L4.633,9.266 L0,4.633 L4.632,0 L4.632,3.551 L11.923,3.551 L11.923,6.202Z";
+  // let rightarrow: string =
+  //   "M0,3.063 L7.292,3.063 L7.292,0 L11.924,4.633 L7.292,9.266 L7.292,5.714 L0.001,5.714 L0.001,3.063Z";
+  // let deleteicon: string =
+  //   "M 7.04 22.13 L 92.95 22.13 L 92.95 88.8 C 92.95 91.92 91.55 94.58 88.76" +
+  //   "96.74 C 85.97 98.91 82.55 100 78.52 100 L 21.48 100 C 17.45 100 14.03 98.91 11.24 96.74 C 8.45 94.58 7.04" +
+  //   "91.92 7.04 88.8 z M 32.22 0 L 67.78 0 L 75.17 5.47 L 100 5.47 L 100 16.67 L 0 16.67 L 0 5.47 L 24.83 5.47 z";
 
-  let leftuserhandle: UserHandleModel = setUserHandle(
-    //it is in dedicated line here.
-    "leftHandle",
-    leftarrow,
-    "Left",
-    1,
-    { top: 0, bottom: 0, left: 0, right: 10 },
-    "Left",
-    "Top"
-  );
-  let rightuserhandle: UserHandleModel = setUserHandle(
-    //it is in dedicated line here.
-    "rightHandle",
-    rightarrow,
-    "Right",
-    1,
-    { top: 0, bottom: 0, left: 10, right: 0 },
-    "Right",
-    "Top"
-  );
-  let deleteuserhandle: UserHandleModel = setUserHandle(
-    //it is in dedicated line here.
-    "delete",
-    deleteicon,
-    "Top",
-    0.5,
-    { top: 0, bottom: 10, left: 0, right: 0 },
-    "Center",
-    "Center"
-  );
-  let handle: UserHandleModel[] = [
-    leftuserhandle,
-    rightuserhandle,
-    deleteuserhandle
-  ];
-  //set and creation of the Userhandle.
-  function setUserHandle( //it is in dedicated line here.
-    name: string,
-    pathData: string,
-    side: Side,
-    offset: number,
-    margin: MarginModel,
-    halignment: HorizontalAlignment,
-    valignment: VerticalAlignment
-  ): UserHandleModel {
-    let userhandle: UserHandleModel = {
-      name: name,
-      pathData: pathData,
-      backgroundColor: "black",
-      pathColor: "white",
-      side: side,
-      offset: offset,
-      margin: margin,
-      horizontalAlignment: halignment,
-      verticalAlignment: valignment
-    };
-    return userhandle;
-  }
+  // let leftuserhandle: UserHandleModel = setUserHandle(
+  //   //it is in dedicated line here.
+  //   "leftHandle",
+  //   leftarrow,
+  //   "Left",
+  //   1,
+  //   { top: 0, bottom: 0, left: 0, right: 10 },
+  //   "Left",
+  //   "Top"
+  // );
+  // let rightuserhandle: UserHandleModel = setUserHandle(
+  //   //it is in dedicated line here.
+  //   "rightHandle",
+  //   rightarrow,
+  //   "Right",
+  //   1,
+  //   { top: 0, bottom: 0, left: 10, right: 0 },
+  //   "Right",
+  //   "Top"
+  // );
+  // let deleteuserhandle: UserHandleModel = setUserHandle(
+  //   //it is in dedicated line here.
+  //   "delete",
+  //   deleteicon,
+  //   "Top",
+  //   0.5,
+  //   { top: 0, bottom: 10, left: 0, right: 0 },
+  //   "Center",
+  //   "Center"
+  // );
+  // let handle: UserHandleModel[] = [
+  //   leftuserhandle,
+  //   rightuserhandle,
+  //   deleteuserhandle
+  // ];
+  // // set and creation of the Userhandle.
+  // function setUserHandle( //it is in dedicated line here.
+  //   name: string,
+  //   pathData: string,
+  //   side: Side,
+  //   offset: number,
+  //   margin: MarginModel,
+  //   halignment: HorizontalAlignment,
+  //   valignment: VerticalAlignment
+  // ): UserHandleModel {
+  //   let userhandle: UserHandleModel = {
+  //     name: name,
+  //     pathData: pathData,
+  //     backgroundColor: "black",
+  //     pathColor: "white",
+  //     side: side,
+  //     offset: offset,
+  //     margin: margin,
+  //     horizontalAlignment: halignment,
+  //     verticalAlignment: valignment
+  //   };
+  //   return userhandle;
+  // }
   //Change the Position of the UserHandle.
-  function changeUserHandlePosition(change: string): void {
-    for (let handle of diagramInstance.selectedItems.userHandles) {
-      if (handle.name === "delete" && change === "leftHandle") {
-        applyHandle(
-          handle,
-          "Left",
-          1,
-          { top: 0, bottom: 0, left: 0, right: 10 },
-          "Left",
-          "Top"
-        );
-      } else if (handle.name === "delete" && change === "rightHandle") {
-        applyHandle(
-          handle,
-          "Right",
-          1,
-          { top: 0, bottom: 0, left: 10, right: 0 },
-          "Right",
-          "Top"
-        );
-      }
-    }
-  }
-  //set the value for UserHandle element.
-  function applyHandle( //it is in dedicated line here.
-    handle: UserHandleModel,
-    side: Side,
-    offset: number,
-    margin: MarginModel,
-    halignment: HorizontalAlignment,
-    valignment: VerticalAlignment
-  ): void {
-    handle.side = side;
-    handle.offset = offset;
-    handle.margin = margin;
-    handle.horizontalAlignment = halignment;
-    handle.verticalAlignment = valignment;
-  }
+  // function changeUserHandlePosition(change: string): void {
+  //   for (let handle of diagramInstance.selectedItems.userHandles) {
+  //     if (handle.name === "delete" && change === "leftHandle") {
+  //       applyHandle(
+  //         handle,
+  //         "Left",
+  //         1,
+  //         { top: 0, bottom: 0, left: 0, right: 10 },
+  //         "Left",
+  //         "Top"
+  //       );
+  //     } else if (handle.name === "delete" && change === "rightHandle") {
+  //       applyHandle(
+  //         handle,
+  //         "Right",
+  //         1,
+  //         { top: 0, bottom: 0, left: 10, right: 0 },
+  //         "Right",
+  //         "Top"
+  //       );
+  //     }
+  //   }
+  // }
   return (
     <div className="control-pane">
       <div className="control-section">
@@ -324,47 +309,6 @@ function MindMap() {
                 return ((node as Node).data as EmployeeInfo).branch;
               },
               horizontalSpacing: 50
-            }}
-            //Selectionchange event for Node and connector
-            selectionChange={(arg: ISelectionChangeEventArgs) => {
-              if (arg.state === "Changing") {
-                if (arg.newValue[0] instanceof Node) {
-                  for (let handle of diagramInstance.selectedItems
-                    .userHandles) {
-                    handle.visible = true;
-                  }
-                  if (
-                    ((arg.newValue[0] as Node).data as EmployeeInfo)
-                      .branch === "Left" ||
-                    ((arg.newValue[0] as Node).data as EmployeeInfo)
-                      .branch === "subLeft"
-                  ) {
-                    hideUserHandle("leftHandle");
-                    changeUserHandlePosition("leftHandle");
-                  } else if (
-                    ((arg.newValue[0] as Node).data as EmployeeInfo)
-                      .branch === "Right" ||
-                    ((arg.newValue[0] as Node).data as EmployeeInfo)
-                      .branch === "subRight"
-                  ) {
-                    hideUserHandle("rightHandle");
-                    changeUserHandlePosition("rightHandle");
-                  } else if (
-                    ((arg.newValue[0] as Node).data as EmployeeInfo)
-                      .branch === "Root"
-                  ) {
-                    hideUserHandle("delete");
-                  }
-                } else {
-                  hideUserHandle("leftHandle");
-                  hideUserHandle("rightHandle");
-                  hideUserHandle("delete");
-                }
-              }
-            }}
-            selectedItems={{
-              constraints: SelectorConstraints.UserHandle,
-              userHandles: handle
             }}
             dataSourceSettings={{
               id: "id",
@@ -468,7 +412,6 @@ function MindMap() {
               connector.constraints &= ~ConnectorConstraints.Select;
               return connector;
             }}
-            // getCustomTool={getTool}
           >
             <Inject
               services={[DataBinding, MindMapModule, HierarchicalTree]}

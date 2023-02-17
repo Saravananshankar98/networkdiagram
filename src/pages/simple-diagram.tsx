@@ -2,6 +2,7 @@ import {
   DiagramComponent,
   SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
+import React from "react";
 import { connectors } from "../mock-data/connectors";
 import { nodes } from "../mock-data/nodes";
 

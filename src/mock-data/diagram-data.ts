@@ -83,72 +83,6 @@ export const keyBoardData = [
   { id: "I", ancestor: "G", fill: "#1E8449" },
   { id: "J", ancestor: "G", fill: "#1E8449" },
 ];
-export const localBindData = [
-  { Id: "parent", Role: "Board", color: "#71AF17" },
-  {
-    Id: "1",
-    Role: "General Manager",
-    Manager: "parent",
-    ChartType: "right",
-    color: "#71AF17",
-  },
-  {
-    Id: "11",
-    Role: "Assistant General Manager",
-    Manager: "1",
-    color: "#71AF17",
-  },
-  {
-    Id: "2",
-    Role: "Human Resource Manager",
-    Manager: "1",
-    ChartType: "right",
-    color: "#1859B7",
-  },
-  { Id: "3", Role: "Trainers", Manager: "2", color: "#2E95D8" },
-  { Id: "4", Role: "Recruiting Team", Manager: "2", color: "#2E95D8" },
-  { Id: "5", Role: "Finance Asst. Manager", Manager: "2", color: "#2E95D8" },
-  {
-    Id: "6",
-    Role: "Design Manager",
-    Manager: "1",
-    ChartType: "right",
-    color: "#1859B7",
-  },
-  { Id: "7", Role: "Design Supervisor", Manager: "6", color: "#2E95D8" },
-  { Id: "8", Role: "Development Supervisor", Manager: "6", color: "#2E95D8" },
-  { Id: "9", Role: "Drafting Supervisor", Manager: "6", color: "#2E95D8" },
-  {
-    Id: "10",
-    Role: "Operations Manager",
-    Manager: "1",
-    ChartType: "right",
-    color: "#1859B7",
-  },
-  { Id: "11", Role: "Statistics Department", Manager: "10", color: "#2E95D8" },
-  { Id: "12", Role: "Logistics Department", Manager: "10", color: "#2E95D8" },
-  {
-    Id: "16",
-    Role: "Marketing Manager",
-    Manager: "1",
-    ChartType: "right",
-    color: "#1859B7",
-  },
-  { Id: "17", Role: "Overseas Sales Manager", Manager: "16", color: "#2E95D8" },
-  { Id: "18", Role: "Petroleum Manager", Manager: "16", color: "#2E95D8" },
-  {
-    Id: "20",
-    Role: "Service Department Manager",
-    Manager: "16",
-    color: "#2E95D8",
-  },
-  {
-    Id: "21",
-    Role: "Quality Control Department",
-    Manager: "16",
-    color: "#2E95D8",
-  },
-];
 export const multiParentData = [
   { Name: "node11", fillColor: "#e7704c", border: "#c15433" },
   {
@@ -419,20 +353,6 @@ export const organizationTree = [
     Supervision: "6",
     color: "#71AF17",
   },
-];
-export const hierarchicalTree = [
-  { Name: "Electronics", fillColor: "#916DAF" },
-  { Name: "Televisions", Category: "Electronics" },
-  { Name: "Portable Electronics", Category: "Electronics" },
-  { Name: "Tube", Category: "Televisions" },
-  { Name: "LCD", Category: "Televisions" },
-  { Name: "Plasma", Category: "Televisions" },
-  { Name: "MP3 Players", Category: "Portable Electronics" },
-  { Name: "CD Players", Category: "Portable Electronics" },
-  { Name: "2 Way Radios", Category: "Portable Electronics" },
-  { Name: "Flash", Category: "MP3 Players" },
-  // { Name: "University", Category: "Management" },
-  // { Name: "Business", Category: "Management" },
 ];
 export const radialTree = [
   {
