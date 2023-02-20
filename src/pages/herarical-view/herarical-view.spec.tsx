@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import HierarchicalModel from './herarical-view';
 
 const renderApp = () => {
-  return render(<App />);
+  return render(<HierarchicalModel/>);
 };
 
 describe("App", () => { 

@@ -6,17 +6,31 @@ import {
   Diagram,
   DiagramComponent,
   Inject,
-  Node, NodeModel,
+  Node,
+  NodeModel,
   RadialTree,
   SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
-import { radialTree } from "../../mock-data/diagram-data";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export interface DataInfo {
   [key: string]: string;
 }
 
-const Radial =() => {
+const Radial = () => {
+  const [radialTreeData, setRadialTreeData] = useState([]);
+
+  useEffect(() => {
+    const doGetRequest = async () => {
+      let res = await axios.get("http://localhost:3000/radialTree");
+      let data = res.data;
+      console.log(data);
+      setRadialTreeData(data);
+    };
+    doGetRequest();
+  }, []);
+
   return (
     <div>
       <DiagramComponent
@@ -27,7 +41,7 @@ const Radial =() => {
         dataSourceSettings={{
           id: "Id",
           parentId: "ReportingPerson",
-          dataSource: new DataManager(radialTree as unknown as JSON[]),
+          dataSource: new DataManager(radialTreeData as unknown as JSON[]),
           doBinding: (
             nodeModel: NodeModel,
             data: DataInfo,
@@ -79,5 +93,5 @@ const Radial =() => {
       </DiagramComponent>
     </div>
   );
-}
+};
 export default Radial;

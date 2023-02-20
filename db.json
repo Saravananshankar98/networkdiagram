@@ -1,0 +1,506 @@
+{
+  "hierarchicalTree": [
+    {
+      "Name": "Electronics",
+      "fillColor": "#916DAF"
+    },
+    {
+      "Name": "Televisions",
+      "Category": "Electronics"
+    },
+    {
+      "Name": "Portable Electronics",
+      "Category": "Electronics"
+    },
+    {
+      "Name": "Tube",
+      "Category": "Televisions"
+    },
+    {
+      "Name": "LCD",
+      "Category": "Televisions"
+    },
+    {
+      "Name": "Plasma",
+      "Category": "Televisions"
+    },
+    {
+      "Name": "MP3 Players",
+      "Category": "Portable Electronics"
+    },
+    {
+      "Name": "CD Players",
+      "Category": "Portable Electronics"
+    },
+    {
+      "Name": "2 Way Radios",
+      "Category": "Portable Electronics"
+    },
+    {
+      "Name": "Flash",
+      "Category": "MP3 Players"
+    }
+  ],
+  "radialTree": [
+    {
+      "Id": "parent",
+      "Name": "TVS",
+      "Designation": "Managing Director"
+    },
+    {
+      "Id": 1,
+      "Name": " Motor Cycles",
+      "Designation": "Project Manager",
+      "ReportingPerson": "parent"
+    },
+    {
+      "Id": 2,
+      "Name": "Scooter",
+      "Designation": "Project Manager",
+      "ReportingPerson": "parent"
+    },
+    {
+      "Id": 3,
+      "Name": "Mopeds",
+      "Designation": "Project Manager",
+      "ReportingPerson": "parent"
+    },
+    {
+      "Id": 4,
+      "Name": "Electric",
+      "Designation": "Project Manager",
+      "ReportingPerson": "parent"
+    },
+    {
+      "Id": 9,
+      "Name": "TVS IQube",
+
+      "ReportingPerson": 4
+    },
+    {
+      "Id": 23,
+      "Name": "TVS IQube",
+
+      "ReportingPerson": 9
+    },
+    {
+      "Id": 24,
+      "Name": "TVS IQube S",
+
+      "ReportingPerson": 9
+    },
+    {
+      "Id": 25,
+      "Name": "TVS IQube ST",
+      "ReportingPerson": 9
+    },
+    {
+      "Id": 26,
+      "Name": "TVS Apache RR 310",
+      "ReportingPerson": 1
+    },
+    {
+      "Id": 10,
+      "Name": "TVS Ronin",
+      "ReportingPerson": 1
+    },
+    {
+      "Id": 11,
+      "Name": "TVS Raider",
+      "ReportingPerson": 1
+    },
+    {
+      "Id": 12,
+      "Name": "TVS RTR 165",
+      "ReportingPerson": 1
+    },
+    {
+      "Id": 13,
+      "Name": "TVS Star City",
+      "ReportingPerson": 1
+    },
+    {
+      "Id": 14,
+      "Name": "TVS Sport",
+      "ReportingPerson": 1
+    },
+    {
+      "Id": 50,
+      "Name": "TVS Xl 100",
+      "ReportingPerson": 3
+    },
+    {
+      "Id": 51,
+      "Name": "TVS Jupiter",
+      "ReportingPerson": 2
+    },
+    {
+      "Id": 52,
+      "Name": "TVS Jupiter",
+      "ReportingPerson": 51
+    },
+    {
+      "Id": 53,
+      "Name": "TVS Jupiter 125",
+      "ReportingPerson": 51
+    },
+    {
+      "Id": 55,
+      "Name": "TVS Ntorq",
+      "ReportingPerson": 2
+    },
+    {
+      "Id": 56,
+      "Name": "TVS Zest",
+      "ReportingPerson": 2
+    },
+    {
+      "Id": 58,
+      "Name": "TVS Scooty Pep",
+      "ReportingPerson": 2
+    }
+  ],
+  "networkDiagram": [
+    {
+      "Name": "server",
+      "offsetX": 850,
+      "offsetY": 55,
+      "annotations": "server IP:192.1.1.1"
+
+     
+    },
+    {
+      "Name": "Modem",
+      "offsetX": 850,
+      "offsetY": 160,
+      "Category": "server",
+      "annotations": "Modem"
+     
+    },
+    {
+      "Name": "wireless router",
+      "Category": "Modem",
+      "offsetX": 850,
+      "offsetY": 280,
+      "annotations": "wireless router"
+    },
+    {
+      "Name": "pc2",
+      "Category": "wireless router",
+      "offsetX": 1250,
+      "offsetY": 280,
+      "annotations": "pc2 IP:192.3.1.2"
+  
+    },
+    {
+      "Name": "laptop1",
+      "Category": "wireless router",
+      "offsetX": 450,
+      "offsetY": 450,
+    "annotations": "laptop1 IP:192.3.1.2"
+    },
+    {
+      "Name": "laptop2",
+      "Category": "wireless router",
+      "offsetX": 650,
+      "offsetY": 450,
+          "annotations": "laptop2 IP:192.4.1.2"
+
+  
+    },
+    {
+      "Name": "smartPhone",
+      "Category": "wireless router",
+      "offsetX": 850,
+      "offsetY": 450,
+      
+          "annotations": "Smart Phone IP:192.3.1.2"
+
+    },
+    {
+      "Name": "pc1",
+      "Category": "wireless router",
+      "offsetX": 1050,
+      "offsetY": 450,
+          "annotations": "pc1 IP:192.3.2.2"
+
+    },
+    {
+      "Name": "wireless printer",
+      "Category": "wireless router",
+      "offsetX": 1250,
+      "offsetY": 450,
+          "annotations": "Wireless Printer"
+
+    }
+  ],
+  "chiefExecutiveChartData": [
+    { "Id": "parent", "Role": "Chief Executive Officer", "color": "yellow" },
+    {
+      "Id": "1",
+      "Role": "Chief Finance Officer",
+      "Manager": "parent",
+      "color": "#a3e4e7"
+    },
+    {
+      "Id": "5",
+      "Role": "Director of Human Resources",
+      "Manager": "parent",
+      "color": "#a3e4e7"
+    },
+    {
+      "Id": "9",
+      "Role": "Director of Sales",
+      "Manager": "parent",
+      "color": "#a3e4e7"
+    },
+    {
+      "Id": "13",
+      "Role": "Chief Technical Officer",
+      "Manager": "parent",
+      "color": "#a3e4e7"
+    },
+    {
+      "Id": "17",
+      "Role": "Director of Marketing",
+      "Manager": "parent",
+      "color": "#a3e4e7"
+    },
+    {
+      "Id": "2",
+      "Role": "Financial Strategy",
+      "Manager": "1",
+      "color": "#ed96e2"
+    },
+    {
+      "Id": "3",
+      "Role": "Accounts Management",
+      "Manager": "1",
+      "color": "#ed96e2"
+    },
+    {
+      "Id": "4",
+      "Role": "Budget and Forecasting",
+      "Manager": "1",
+      "color": "#ed96e2"
+    },
+    {
+      "Id": "6",
+      "Role": "Staff Recruitment",
+      "Manager": "5",
+      "color": "#40f7ed"
+    },
+    {
+      "Id": "7",
+      "Role": "Staff Development",
+      "Manager": "5",
+      "color": "#40f7ed"
+    },
+    {
+      "Id": "8",
+      "Role": "Operation Management",
+      "Manager": "5",
+      "color": "#40f7ed"
+    },
+    {
+      "Id": "10",
+      "Role": "Domestic Sales",
+      "Manager": "9",
+      "color": "#f1d0f1"
+    },
+    {
+      "Id": "11",
+      "Role": "International Sales",
+      "Manager": "9",
+      "color": "#f1d0f1"
+    },
+    {
+      "Id": "12",
+      "Role": "Customer RelationShip Management",
+      "Manager": "9",
+      "color": "#f1d0f1"
+    },
+    {
+      "Id": "14",
+      "Role": "infrastructure Management",
+      "Manager": "13",
+      "color": "#aba6ab"
+    },
+    {
+      "Id": "15",
+      "Role": "Research and Development",
+      "Manager": "13",
+      "color": "#aba6ab"
+    },
+    {
+      "Id": "16",
+      "Role": "Information Management",
+      "Manager": "13",
+      "color": "#aba6ab"
+    }
+  ],
+  "CareerPlaningData": [
+    { "id": 1, "Label": "Career Planning", "fill": "Black", "branch": "Root" },
+    {
+      "id": 2,
+      "Label": "Current skills",
+      "parentId": 1,
+      "branch": "Right",
+      "fill": "Blue"
+    },
+    {
+      "id": 3,
+      "Label": "Technical skills",
+      "parentId": 2,
+      "branch": "subRight"
+    },
+    {
+      "id": 4,
+      "Label": "Interpersonal skills",
+      "parentId": 2,
+      "branch": "subRight"
+    },
+    { "id": 5, "Label": "Language", "parentId": 2, "branch": "subRight" },
+    { "id": 9, "Label": "Computing", "parentId": 3, "branch": "subRight" },
+    {
+      "id": 10,
+      "Label": "Chemical engineering",
+      "parentId": 3,
+      "branch": "subRight"
+    },
+    {
+      "id": 11,
+      "Label": "Verbal communication",
+      "parentId": 4,
+      "branch": "subRight"
+    },
+    {
+      "id": 12,
+      "Label": "Decision making",
+      "parentId": 4,
+      "branch": "subRight"
+    },
+    {
+      "id": 13,
+      "Label": "Problem solving",
+      "parentId": 4,
+      "branch": "subRight"
+    },
+    { "id": 14, "Label": "Negotiating", "parentId": 4, "branch": "subRight" },
+    { "id": 15, "Label": "English", "parentId": 5, "branch": "subRight" },
+    { "id": 16, "Label": "Chinese", "parentId": 5, "branch": "subRight" },
+    { "id": 22, "Label": "Programming", "parentId": 9, "branch": "subRight" },
+    {
+      "id": 23,
+      "Label": "Database management",
+      "parentId": 9,
+      "branch": "subRight"
+    },
+    {
+      "id": 24,
+      "Label": "Network and Security",
+      "parentId": 9,
+      "branch": "subRight"
+    },
+    {
+      "id": 25,
+      "Label": "Software testing",
+      "parentId": 9,
+      "branch": "subRight"
+    },
+    {
+      "id": 26,
+      "Label": "HAZOP studies",
+      "parentId": 10,
+      "branch": "subRight"
+    },
+    {
+      "id": 27,
+      "Label": "Refinery operations",
+      "parentId": 10,
+      "branch": "subRight"
+    },
+    {
+      "id": 30,
+      "Label": "Possibilities",
+      "parentId": 1,
+      "branch": "Left",
+      "fill": "red"
+    },
+    {
+      "id": 31,
+      "Label": "Preferences",
+      "parentId": 1,
+      "branch": "Left",
+      "fill": "lightGreen"
+    },
+    {
+      "id": 32,
+      "Label": "Education",
+      "parentId": 1,
+      "branch": "Left",
+      "fill": "yellow"
+    },
+    {
+      "id": 17,
+      "Label": "Acheive a new position",
+      "parentId": 30,
+      "branch": "subLeft"
+    },
+    {
+      "id": 18,
+      "Label": "Improve a current position",
+      "parentId": 30,
+      "branch": "subLeft"
+    },
+    {
+      "id": 19,
+      "Label": "Look for a new job",
+      "parentId": 31,
+      "branch": "subLeft"
+    },
+    { "id": 20, "Label": "College", "parentId": 32, "branch": "subLeft" },
+    { "id": 21, "Label": "University", "parentId": 32, "branch": "subLeft" },
+    { "id": 28, "Label": "ABC College", "parentId": 20, "branch": "subLeft" },
+    {
+      "id": 29,
+      "Label": "Hello World University",
+      "parentId": 21,
+      "branch": "subLeft"
+    }
+  ],
+  "artificialIntelligence": [
+    {
+      "Name": "Artificial Intelligence",
+      "fillColor": "#916DAF",
+      "branch": "root"
+    },
+    { "Name": "Machine Learning", "Category": "Artificial Intelligence" },
+    {
+      "Name": "Natural Language Processing (NLP)",
+      "Category": "Artificial Intelligence"
+    },
+    { "Name": "Speech", "Category": "Artificial Intelligence" },
+    {
+      "Name": "Planning, Scheduling, and Optimization",
+      "Category": "Artificial Intelligence"
+    },
+    { "Name": "Robotics", "Category": "Artificial Intelligence" },
+    { "Name": "Vision", "Category": "Artificial Intelligence" },
+    { "Name": " Deep Learning ", "Category": "Machine Learning" },
+    { "Name": "Predictive Analytics ", "Category": "Machine Learning" },
+    { "Name": "Translation ", "Category": "Natural Language Processing (NLP)" },
+    {
+      "Name": "Classification",
+      "Category": "Natural Language Processing (NLP)"
+    },
+    {
+      "Name": "Information Extraction",
+      "Category": "Natural Language Processing (NLP)"
+    },
+    { "Name": "Speech to Text", "Category": "Speech" },
+    { "Name": "Text to Speech", "Category": "Speech" },
+    { "Name": "Image Recognition ", "Category": "Vision" },
+    { "Name": "Machine Vision", "Category": "Vision" }
+  ]
+}

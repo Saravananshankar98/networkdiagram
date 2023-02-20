@@ -1,15 +1,42 @@
 import { DataManager } from "@syncfusion/ej2-data";
 import {
-  ConnectorModel, DataBinding, Diagram, DiagramComponent, DiagramTools, HierarchicalTree, Inject, Node, NodeModel, PointPortModel, ShapeAnnotationModel, SnapConstraints
+  ConnectorModel,
+  DataBinding,
+  Diagram,
+  DiagramComponent,
+  DiagramTools,
+  HierarchicalTree,
+  Inject,
+  Node,
+  NodeModel,
+  PointPortModel,
+  ShapeAnnotationModel,
+  SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
-import { artificialIntelligence } from "../../mock-data/diagram-data";
+import axios from "axios";
+import { useEffect, useState } from "react";
+// import { artificialIntelligence } from "../../mock-data/diagram-data";
 
 export interface DataInfo {
   [key: string]: string;
 }
 
-const RTLTree =() => {
-  const getPorts =(root: boolean) => {
+const RTLTree = () => {
+  const [artificialIntelligenceData, setArtificialIntelligenceData] = useState(
+    []
+  );
+
+  useEffect(() => {
+    const doGetRequest = async () => {
+      let res = await axios.get("http://localhost:3000/artificialIntelligence");
+      let data = res.data;
+      console.log(data);
+      setArtificialIntelligenceData(data);
+    };
+    doGetRequest();
+  }, []);
+
+  const getPorts = (root: boolean) => {
     let ports: PointPortModel[] = [
       {
         id: "port1",
@@ -31,7 +58,7 @@ const RTLTree =() => {
     ports[0].verticalAlignment = "Center";
     ports[0].horizontalAlignment = "Center";
     return ports;
-  }
+  };
   return (
     <div style={{ width: "100%" }}>
       <DiagramComponent
@@ -42,7 +69,7 @@ const RTLTree =() => {
         dataSourceSettings={{
           id: "Name",
           parentId: "Category",
-          dataSource: new DataManager(artificialIntelligence),
+          dataSource: new DataManager(artificialIntelligenceData),
           doBinding: (
             nodeModel: NodeModel,
             data: DataInfo,
@@ -101,5 +128,5 @@ const RTLTree =() => {
       </DiagramComponent>
     </div>
   );
-}
+};
 export default RTLTree;

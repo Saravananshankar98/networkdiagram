@@ -11,20 +11,34 @@ import {
   NodeModel,
   SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
-import {
-  chiefExecutiveChartData
-} from "../../mock-data/organization-chart";
+import axios from "axios";
+import { useEffect, useState } from "react";
+// import {
+//   chiefExecutiveChartData
+// } from "../../mock-data/organization-chart";
 
 export interface ChiefExecutiveInfo {
   Role: string;
   color: string;
 }
 
-let items: DataManager = new DataManager(
-  chiefExecutiveChartData as unknown as JSON[]
-);
-
 const OrganizationChart =() => {
+  const [chiefExecutiveChartData , setChiefExecutiveChartData] = useState([]);
+
+  useEffect(() => {
+    const doGetRequest = async () => {
+       let res = await axios.get('http://localhost:3000/chiefExecutiveChartData');
+       let data = res.data;
+       console.log(data);
+       setChiefExecutiveChartData(data);
+     }
+     doGetRequest();
+   }, []);
+   
+  let items: DataManager = new DataManager(
+    chiefExecutiveChartData as unknown as JSON[]
+  );
+
   const nodeDefaults =(obj: Node, diagram: Diagram): Node => {
     obj.backgroundColor = (obj.data as ChiefExecutiveInfo).color;
     obj.style = { fill: "none", strokeColor: "none", color: "white" };

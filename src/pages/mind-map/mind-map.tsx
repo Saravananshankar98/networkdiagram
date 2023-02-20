@@ -14,13 +14,27 @@ import {
   PortVisibility,
   SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
-import { CareerPlaningData } from "../../mock-data/mind-map";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-let items: DataManager = new DataManager(
-  CareerPlaningData as unknown as JSON[]
-);
 
 const MindMap =() => {
+  const [careerPlaningData , setCareerPlaningData] = useState([]);
+
+  useEffect(() => {
+   const doGetRequest = async () => {
+      let res = await axios.get('http://localhost:3000/CareerPlaningData');
+      let data = res.data;
+      console.log(data);
+      setCareerPlaningData(data);
+    }
+    doGetRequest();
+  }, [])
+
+  let items: DataManager = new DataManager(
+    careerPlaningData as unknown as JSON[]
+  );
+
   const getPort = (): PointPortModel[] => {
     let port: PointPortModel[] = [
       {
@@ -40,14 +54,14 @@ const MindMap =() => {
   }
 
   const nodeDefaults =(obj: Node) => {
-    obj.constraints = NodeConstraints.Default & ~NodeConstraints.Drag;
+      obj.constraints = NodeConstraints.Default & ~NodeConstraints.Drag;
     if (
       (obj.data as CareerPlaningInfo).branch === "Left" ||
       (obj.data as CareerPlaningInfo).branch === "Right" ||
       (obj.data as CareerPlaningInfo).branch === "Root"
     ) {
       obj.shape = { type: "Flow", shape: "Terminator" };
-      obj.borderColor = "black"; /* tslint:disable:no-string-literal */
+      obj.borderColor = "black"; 
       obj.style = {
         fill:
           (obj.data as CareerPlaningInfo).branch === "Root"
@@ -68,7 +82,7 @@ const MindMap =() => {
         obj.ports.push(new PointPort(obj, "ports", port[i], true));
       }
     } else {
-      let color: string; /* tslint:disable:no-string-literal */
+      let color: string;
       if (
         (obj.data as CareerPlaningInfo).branch === "Right" ||
         (obj.data as CareerPlaningInfo).branch === "subRight"

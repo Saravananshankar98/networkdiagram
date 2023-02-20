@@ -12,15 +12,27 @@ import {
   SnapConstraints,
   TextModel
 } from "@syncfusion/ej2-react-diagrams";
-import { hierarchicalTree } from "../../mock-data/hierarchical-tree";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export interface ElectricInfo {
   Name: string;
 }
 
-const HierarchicalModel =() => {
-  
-  const nodeDefaults =(obj: Node, diagram: Diagram): Node => {
+const HierarchicalModel = () => {
+  const [hierarchicalTreeData, setHierarchicalTreeData] = useState([]);
+
+  useEffect(() => {
+    const doGetRequest = async () => {
+      let res = await axios.get("http://localhost:3000/hierarchicalTree");
+      let data = res.data;
+      console.log(data);
+      setHierarchicalTreeData(data);
+    };
+    doGetRequest();
+  }, []);
+
+  const nodeDefaults = (obj: Node, diagram: Diagram): Node => {
     obj.style = {
       fill: "#659be5",
       strokeColor: "none",
@@ -36,9 +48,9 @@ const HierarchicalModel =() => {
       top: 10,
     };
     return obj;
-  }
+  };
 
-  const connectorDefaults =(
+  const connectorDefaults = (
     connector: ConnectorModel,
     diagram: Diagram
   ): ConnectorModel => {
@@ -46,7 +58,7 @@ const HierarchicalModel =() => {
     connector.constraints = 0;
     connector.cornerRadius = 5;
     return connector;
-  }
+  };
   return (
     <div>
       <DiagramComponent
@@ -57,7 +69,9 @@ const HierarchicalModel =() => {
         dataSourceSettings={{
           id: "Name",
           parentId: "Category",
-          dataSource: new DataManager(hierarchicalTree as unknown as JSON[]),
+          dataSource: new DataManager(
+            hierarchicalTreeData as unknown as JSON[]
+          ),
           doBinding: (nodeModel: NodeModel, data: object, diagram: Diagram) => {
             nodeModel.shape = {
               type: "Flow",
@@ -88,5 +102,5 @@ const HierarchicalModel =() => {
       </DiagramComponent>
     </div>
   );
-}
+};
 export default HierarchicalModel;
