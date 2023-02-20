@@ -3,8 +3,9 @@ import {
   SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
 import React from "react";
-import { connectors } from "../mock-data/connectors";
-import { nodes } from "../mock-data/nodes";
+import { connectors } from "../../mock-data/connectors";
+import { nodes } from "../../mock-data/nodes";
+
 
 function SimpleDiagram() {
   function getNodeDefaults(obj:any) {
@@ -30,7 +31,8 @@ function SimpleDiagram() {
   }
 
   return (
-    <div>
+    <div className="App">
+      <div>
       <DiagramComponent
         id="diagram"
         width={"100%"}
@@ -41,6 +43,7 @@ function SimpleDiagram() {
         getNodeDefaults={getNodeDefaults}
         getConnectorDefaults={getConnectorDefaults}
       />
+      </div>
     </div>
   );
 }

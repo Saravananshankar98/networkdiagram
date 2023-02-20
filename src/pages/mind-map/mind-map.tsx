@@ -1,13 +1,10 @@
-import { DataManager, Query } from "@syncfusion/ej2-data";
+import { DataManager } from "@syncfusion/ej2-data";
 import {
   ConnectorConstraints,
   ConnectorModel,
   DataBinding,
   Diagram,
-  DiagramComponent,
-  DiagramTools,
-  HierarchicalTree,
-  Inject,
+  DiagramComponent, Inject,
   MindMap as MindMapModule,
   Node,
   NodeConstraints,
@@ -15,10 +12,9 @@ import {
   PointPort,
   PointPortModel,
   PortVisibility,
-  SnapConstraints,
-  TextModel,
+  SnapConstraints
 } from "@syncfusion/ej2-react-diagrams";
-import { CareerPlaningData } from "../mock-data/mind-map";
+import { CareerPlaningData } from "../../mock-data/mind-map";
 
 let items: DataManager = new DataManager(
   CareerPlaningData as unknown as JSON[]
@@ -54,7 +50,9 @@ function MindMap() {
       obj.borderColor = "black"; /* tslint:disable:no-string-literal */
       obj.style = {
         fill:
-          (obj.data as CareerPlaningInfo).branch === "Root" ? "#161616" : "#2873e4",
+          (obj.data as CareerPlaningInfo).branch === "Root"
+            ? "#161616"
+            : "#2873e4",
         strokeColor: "none",
         strokeWidth: 2,
       };
@@ -128,7 +126,7 @@ function MindMap() {
     <div>
       <DiagramComponent
         id="diagram"
-        style={{paddingLeft:"40px", height: "550px" }}
+        style={{ paddingLeft: "40px", height: "550px" }}
         width={"100%"}
         height={"850px"}
         snapSettings={{ constraints: SnapConstraints.None }}

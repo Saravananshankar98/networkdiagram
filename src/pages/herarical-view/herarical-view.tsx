@@ -9,27 +9,32 @@ import {
   LayoutAnimation,
   Node,
   NodeModel,
-  SnapConstraints
+  SnapConstraints,
+  TextModel
 } from "@syncfusion/ej2-react-diagrams";
-import {
-  chiefExecutiveChartData
-} from "../mock-data/organization-chart";
+import { hierarchicalTree } from "../../mock-data/hierarchical-tree";
 
-export interface ChiefExecutiveInfo {
-  Role: string;
-  color: string;
+export interface ElectricInfo {
+  Name: string;
 }
 
-let items: DataManager = new DataManager(
-  chiefExecutiveChartData as unknown as JSON[]
-);
-
-function OrganizationChart() {
+function HierarchicalModel() {
+  
   function nodeDefaults(obj: Node, diagram: Diagram): Node {
-    obj.backgroundColor = (obj.data as ChiefExecutiveInfo).color;
-    obj.style = { fill: "none", strokeColor: "none", color: "white" };
-    obj.width = 120;
-    obj.height = 60;
+    obj.style = {
+      fill: "#659be5",
+      strokeColor: "none",
+      color: "white",
+      strokeWidth: 2,
+    };
+    obj.borderColor = "#3a6eb5";
+    obj.backgroundColor = "#659be5";
+    (obj.shape as TextModel).margin = {
+      left: 10,
+      right: 10,
+      bottom: 10,
+      top: 10,
+    };
     return obj;
   }
 
@@ -39,7 +44,7 @@ function OrganizationChart() {
   ): ConnectorModel {
     connector.type = "Orthogonal";
     connector.constraints = 0;
-    connector.cornerRadius = 3;
+    connector.cornerRadius = 5;
     return connector;
   }
   return (
@@ -50,9 +55,9 @@ function OrganizationChart() {
         height={"800px"}
         snapSettings={{ constraints: SnapConstraints.None }}
         dataSourceSettings={{
-          id: "Id",
-          parentId: "Manager",
-          dataSource: items,
+          id: "Name",
+          parentId: "Category",
+          dataSource: new DataManager(hierarchicalTree as unknown as JSON[]),
           doBinding: (nodeModel: NodeModel, data: object, diagram: Diagram) => {
             nodeModel.shape = {
               type: "Flow",
@@ -60,24 +65,17 @@ function OrganizationChart() {
             };
             nodeModel.annotations = [
               {
-                content: (data as ChiefExecutiveInfo).Role,
+                content: (data as ElectricInfo).Name,
               },
             ];
           },
         }}
         layout={{
-          type: "OrganizationalChart",
-          verticalSpacing: 50,
-          horizontalSpacing: 80,
-          getLayoutInfo: (node: any, options: any) => {
-            if (node.data["Role"] === "General Manager") {
-              options.assistants.push(options.children[0]);
-              options.children.splice(0, 1);
-            }
-            if (!options.hasSubTree) {
-              options.type = "Right";
-            }
-          },
+          type: "HierarchicalTree",
+          verticalSpacing: 30,
+          horizontalSpacing: 40,
+          enableAnimation: true,
+          orientation: "TopToBottom", // LeftToRight || BottomToTop || RightToLeft || TopToBottom
         }}
         getNodeDefaults={(obj: Node, diagram: Diagram) => {
           return nodeDefaults(obj, diagram);
@@ -91,4 +89,4 @@ function OrganizationChart() {
     </div>
   );
 }
-export default OrganizationChart;
+export default HierarchicalModel;

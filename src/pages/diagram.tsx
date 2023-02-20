@@ -779,8 +779,8 @@ function NetworkShapes() {
       <style>{SAMPLE_CSS}</style>
       <div className="control-section">
         <div id="networkDiagram" style={{ width: "100%", height: "600px" }}>
-          <div className="sb-mobile-palette-bar">
-            <div
+         {/* <div className="sb-mobile-palette-bar">
+             <div
               id="palette-icon"
               style={{ float: "right" }}
               className="e-ddb-icons1 e-toggle-palette"
@@ -799,7 +799,7 @@ function NetworkShapes() {
               symbolWidth={48}
             />
             
-          </div>
+          </div> */}
 
           <div id="diagram-space" className="sb-mobile-diagram">
             <DiagramComponent

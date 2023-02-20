@@ -263,7 +263,6 @@ function Tooltip() {
   React.useEffect(() => {
     rendereComplete();
   }, []);
-  const fields = { text: "text", value: "type" };
   function rendereComplete() {
     diagramInstance.fitToPage({ mode: "Width" });
   }

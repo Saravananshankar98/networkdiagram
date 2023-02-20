@@ -1,21 +1,19 @@
-import HierarchicalModel from "./pages/herarical-view";
-import MindMap from "./pages/mind-map";
-import Radial from "./pages/radial-tree";
-import NetworkShapes from "./pages/diagram";
-import SimpleDiagram from "./pages/simple-diagram";
-import Tooltip from "./pages/sample-diagram";
-import OrganizationChart from "./pages/organization0view";
+import HierarchicalModel from "./pages/herarical-view/herarical-view";
+import MindMap from "./pages/mind-map/mind-map";
+import SimpleDiagram from "./pages/network-diagram/simple-diagram";
+import Radial from "./pages/radial-tree/radial-tree";
+import RTLTree from "./pages/artificial-page/artificial-page";
+import OrganizationChart from "./pages/organization-view/organization-view";
 
 function App() {
   return (
-    <div>
-      {/* <NetworkShapes/> */}
-      {/* <Tooltip/> */}
-      {/* <SimpleDiagram /> */}
-      {/* <HierarchicalModel/> */}
-      {/* <MindMap/> */}
-      {/* <Radial/> */}
-      <OrganizationChart />
+    <div className="App">
+      <SimpleDiagram />
+      {/* <HierarchicalModel /> */}
+      {/* <MindMap /> */}
+      {/* <Radial /> */}
+      {/* <RTLTree /> */}
+      {/* <OrganizationChart /> */}
     </div>
   );
 }
