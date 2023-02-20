@@ -241,31 +241,26 @@ let connectors: ConnectorModel[] = [
   { id: "connector12", sourceID: "node10", targetID: "node12" },
   { id: "connector13", sourceID: "node9", targetID: "node14" },
 ];
-function getConnectorDefaults(connector: { type: string; style: { strokeWidth: number; }; }, diagram: any) {
+const getConnectorDefaults =(connector: { type: string; style: { strokeWidth: number; }; }, diagram: any) => {
   connector.type = "Orthogonal";
   connector.style = { strokeWidth: 2 };
   return connector;
 }
-function getNodeDefaults(obj: { offsetX: number; offsetY: number; constraints: number; style: { strokeWidth: number; }; }) {
+const getNodeDefaults =(obj: { offsetX: number; offsetY: number; constraints: number; style: { strokeWidth: number; }; }) => {
   obj.offsetX += 0.5;
   obj.offsetY += 0.5;
   obj.constraints = NodeConstraints.Default | NodeConstraints.Tooltip;
   obj.style = { strokeWidth: 2 };
   return obj;
 }
-function getcontent() {
+const getcontent =() => {
   let tooltipContent = document.createElement("div");
   tooltipContent.innerHTML =
     '<div style="background-color: #f4f4f4; color: black; border-width:1px;border-style: solid;border-color: #d3d3d3; border-radius: 8px;white-space: nowrap;"> <span style="margin: 10px;"> Tooltip !!! </span> </div>';
   return tooltipContent;
 }
-function Tooltip() {
-  React.useEffect(() => {
-    rendereComplete();
-  }, []);
-  function rendereComplete() {
-    diagramInstance.fitToPage({ mode: "Width" });
-  }
+const Tooltip =() => {
+
   return (
         <div>
           <DiagramComponent

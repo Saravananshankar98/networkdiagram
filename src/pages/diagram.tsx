@@ -692,9 +692,9 @@ const SAMPLE_CSS = `
 }
 `;
 
-function NetworkShapes() {
+const NetworkShapes = () => {
 
-  function getNodeDefaults(node: NodeModel): NodeModel {
+  const getNodeDefaults =(node: NodeModel): NodeModel => {
   
       if (node.id === 'Server1') {
         node.width = 50;
@@ -743,7 +743,7 @@ function NetworkShapes() {
     return node;
   }
 
-  function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
+  const getConnectorDefaults =(connector: ConnectorModel): ConnectorModel => {
     connector.targetDecorator = {
       shape: 'Arrow', width: 8, height: 8,
       style: { fill: '#5C90DF', strokeColor: '#5C90DF' }
@@ -751,28 +751,28 @@ function NetworkShapes() {
    return connector;
   }
 
-  function getSymbolInfo(symbol: NodeModel): SymbolInfo {
-    return { fit: true };
-  }
+  // function getSymbolInfo(symbol: NodeModel): SymbolInfo {
+  //   return { fit: true };
+  // }
 
-  function getSymbolDefaults(symbol: NodeModel): void {
-    if (symbol.id === "arrow1") {
-      symbol.width = 75;
-      symbol.height = 60;
-      symbol.offsetX = 160;
-      symbol.offsetY = 135;
-   } else {
-      if (symbol.id === "remoteController") {
-        symbol.width = 25;
-      } else {
-        symbol.width = 40;
-      }
-      symbol.height = 40;
-      symbol.offsetX = 20;
-      symbol.offsetY = 20;
-      (symbol.shape as Native).scale = "Stretch";
-    }
-  }
+  // function getSymbolDefaults(symbol: NodeModel): void {
+  //   if (symbol.id === "arrow1") {
+  //     symbol.width = 75;
+  //     symbol.height = 60;
+  //     symbol.offsetX = 160;
+  //     symbol.offsetY = 135;
+  //  } else {
+  //     if (symbol.id === "remoteController") {
+  //       symbol.width = 25;
+  //     } else {
+  //       symbol.width = 40;
+  //     }
+  //     symbol.height = 40;
+  //     symbol.offsetX = 20;
+  //     symbol.offsetY = 20;
+  //     (symbol.shape as Native).scale = "Stretch";
+  //   }
+  // }
 
   return (
     <div className="control-pane">

@@ -7,9 +7,8 @@ import { connectors } from "../../mock-data/connectors";
 import { nodes } from "../../mock-data/nodes";
 
 
-function SimpleDiagram() {
-  function getNodeDefaults(obj:any) {
-    // obj.constraints = NodeConstraints.Default | NodeConstraints.Tooltip;
+const SimpleDiagram = () => {
+  const getNodeDefaults =(obj:any) => {
     obj.style = { strokeWidth: 2 };
     obj.width = 180;
     obj.height = 60;
@@ -21,7 +20,7 @@ function SimpleDiagram() {
     return obj;
   }
 
-  function getConnectorDefaults(connector: any) {
+  const getConnectorDefaults =(connector: any)=> {
     if (connector.type === "Bezier") {
       connector.style = { strokeDashArray: "5.5" };
     } else {

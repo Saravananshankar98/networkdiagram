@@ -18,9 +18,9 @@ export interface ElectricInfo {
   Name: string;
 }
 
-function HierarchicalModel() {
+const HierarchicalModel =() => {
   
-  function nodeDefaults(obj: Node, diagram: Diagram): Node {
+  const nodeDefaults =(obj: Node, diagram: Diagram): Node => {
     obj.style = {
       fill: "#659be5",
       strokeColor: "none",
@@ -38,10 +38,10 @@ function HierarchicalModel() {
     return obj;
   }
 
-  function connectorDefaults(
+  const connectorDefaults =(
     connector: ConnectorModel,
     diagram: Diagram
-  ): ConnectorModel {
+  ): ConnectorModel => {
     connector.type = "Orthogonal";
     connector.constraints = 0;
     connector.cornerRadius = 5;

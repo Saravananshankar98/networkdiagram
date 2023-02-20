@@ -24,8 +24,8 @@ let items: DataManager = new DataManager(
   chiefExecutiveChartData as unknown as JSON[]
 );
 
-function OrganizationChart() {
-  function nodeDefaults(obj: Node, diagram: Diagram): Node {
+const OrganizationChart =() => {
+  const nodeDefaults =(obj: Node, diagram: Diagram): Node => {
     obj.backgroundColor = (obj.data as ChiefExecutiveInfo).color;
     obj.style = { fill: "none", strokeColor: "none", color: "white" };
     obj.width = 120;
@@ -33,10 +33,10 @@ function OrganizationChart() {
     return obj;
   }
 
-  function connectorDefaults(
+  const connectorDefaults =(
     connector: ConnectorModel,
     diagram: Diagram
-  ): ConnectorModel {
+  ): ConnectorModel => {
     connector.type = "Orthogonal";
     connector.constraints = 0;
     connector.cornerRadius = 3;

@@ -8,8 +8,8 @@ export interface DataInfo {
   [key: string]: string;
 }
 
-function RTLTree() {
-  function getPorts(root: boolean) {
+const RTLTree =() => {
+  const getPorts =(root: boolean) => {
     let ports: PointPortModel[] = [
       {
         id: "port1",

@@ -20,8 +20,8 @@ let items: DataManager = new DataManager(
   CareerPlaningData as unknown as JSON[]
 );
 
-function MindMap() {
-  function getPort(): PointPortModel[] {
+const MindMap =() => {
+  const getPort = (): PointPortModel[] => {
     let port: PointPortModel[] = [
       {
         id: "port1",
@@ -39,7 +39,7 @@ function MindMap() {
     return port;
   }
 
-  function nodeDefaults(obj: Node) {
+  const nodeDefaults =(obj: Node) => {
     obj.constraints = NodeConstraints.Default & ~NodeConstraints.Drag;
     if (
       (obj.data as CareerPlaningInfo).branch === "Left" ||
@@ -98,7 +98,7 @@ function MindMap() {
     return obj;
   }
 
-  function connectorDefaults(connector: any, diagram: Diagram): ConnectorModel {
+  const connectorDefaults =(connector: any, diagram: Diagram): ConnectorModel => {
     connector.type = "Bezier";
     connector.targetDecorator = { shape: "None" };
     let sourceNode: Node = diagram.getObject(connector.sourceID) as Node;

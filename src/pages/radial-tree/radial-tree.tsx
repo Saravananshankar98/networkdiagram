@@ -16,7 +16,7 @@ export interface DataInfo {
   [key: string]: string;
 }
 
-function Radial() {
+const Radial =() => {
   return (
     <div>
       <DiagramComponent

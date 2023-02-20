@@ -5,15 +5,15 @@ import Radial from "./pages/radial-tree/radial-tree";
 import RTLTree from "./pages/artificial-page/artificial-page";
 import OrganizationChart from "./pages/organization-view/organization-view";
 
-function App() {
+const App =() => {
   return (
     <div className="App">
-      <SimpleDiagram />
+      {/* <SimpleDiagram /> */}
       {/* <HierarchicalModel /> */}
       {/* <MindMap /> */}
       {/* <Radial /> */}
       {/* <RTLTree /> */}
-      {/* <OrganizationChart /> */}
+      <OrganizationChart />
     </div>
   );
 }
