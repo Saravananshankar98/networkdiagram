@@ -53,14 +53,6 @@ const SimpleDiagram = () => {
     } else {
       obj.shape = { type: "Flow", shape: "Terminator" };
     }
-    
-    // obj.annotations = [
-    //   {
-    //     content: (obj.data as networkInfo).annotations,
-    //     style: { color: "white" },
-    //     width: 800,
-    //   },
-    // ];
     return obj;
   };
 

@@ -1,9 +1,9 @@
-//import HierarchicalModel from "./pages/herarical-view/herarical-view";
-//import MindMap from "./pages/mind-map/mind-map";
+import HierarchicalModel from "./pages/herarical-view/herarical-view";
+import MindMap from "./pages/mind-map/mind-map";
 import SimpleDiagram from "./pages/network-diagram/simple-diagram";
-//import Radial from "./pages/radial-tree/radial-tree";
-//import RTLTree from "./pages/artificial-page/artificial-page";
-//import OrganizationChart from "./pages/organization-view/organization-view";
+import Radial from "./pages/radial-tree/radial-tree";
+import RTLTree from "./pages/artificial-page/artificial-page";
+import OrganizationChart from "./pages/organization-view/organization-view";
 
 const App =() => {
   return (
