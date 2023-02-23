@@ -22,15 +22,14 @@ const Radial = () => {
   const [radialTreeData, setRadialTreeData] = useState([]);
 
   useEffect(() => {
-    const doGetRequest = async () => {
-      let res = await axios.get("http://localhost:3000/radialTree");
-      let data = res.data;
-      console.log(data);
-      setRadialTreeData(data);
-    };
+    
     doGetRequest();
   }, []);
-
+  const doGetRequest = async () => {
+    let res = await axios.get("http://localhost:3000/radialTree");
+    let data = res.data;
+    setRadialTreeData(data);
+  };
   return (
     <div>
       <DiagramComponent
@@ -73,7 +72,6 @@ const Radial = () => {
             }
           },
         }}
-        // tool={DiagramTools.ZoomPan}
         layout={{
           type: "RadialTree",
           verticalSpacing: 30,

@@ -14,6 +14,7 @@ import {
 } from "@syncfusion/ej2-react-diagrams";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { hierarchicalTree } from "../../mock-data/hierarchical-tree";
 
 export interface ElectricInfo {
   Name: string;
@@ -23,15 +24,14 @@ const HierarchicalModel = () => {
   const [hierarchicalTreeData, setHierarchicalTreeData] = useState([]);
 
   useEffect(() => {
-    const doGetRequest = async () => {
-      let res = await axios.get("http://localhost:3000/hierarchicalTree");
-      let data = res.data;
-      console.log(data);
-      setHierarchicalTreeData(data);
-    };
+    
     doGetRequest();
   }, []);
-
+  const doGetRequest = async () => {
+    let res = await axios.get("http://localhost:3000/hierarchicalTree");
+    let data = res.data;
+    setHierarchicalTreeData(data);
+  };
   const nodeDefaults = (obj: Node, diagram: Diagram): Node => {
     obj.style = {
       fill: "#659be5",
@@ -70,7 +70,7 @@ const HierarchicalModel = () => {
           id: "Name",
           parentId: "Category",
           dataSource: new DataManager(
-            hierarchicalTreeData as unknown as JSON[]
+            hierarchicalTree as unknown as JSON[]
           ),
           doBinding: (nodeModel: NodeModel, data: object, diagram: Diagram) => {
             nodeModel.shape = {

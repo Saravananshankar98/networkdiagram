@@ -11,7 +11,6 @@ import {
 } from "@syncfusion/ej2-react-diagrams";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { connectors } from "../../mock-data/connectors";
 
 export interface networkInfo {
   Name: string;
@@ -26,15 +25,15 @@ const SimpleDiagram = () => {
   const [networkDiagramData , setNetworkDiagramData] = useState([]);
 
   useEffect(() => {
-   const doGetRequest = async () => {
-      let res = await axios.get('http://localhost:3000/networkDiagram');
-      let data = res.data;
-      console.log(data);
-      setNetworkDiagramData(data);
-    }
+   
     doGetRequest();
   }, [])
-
+  
+  const doGetRequest = async () => {
+    let res = await axios.get('http://localhost:3000/networkDiagram');
+    let data = res.data;
+    setNetworkDiagramData(data);
+  }
   const getNodeDefaults = (obj: any):NodeModel => {
     obj.style = { strokeWidth: 2 };
     obj.width = 180;

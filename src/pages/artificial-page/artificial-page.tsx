@@ -15,7 +15,7 @@ import {
 } from "@syncfusion/ej2-react-diagrams";
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import { artificialIntelligence } from "../../mock-data/diagram-data";
+// import { artificialIntelligenceData } from "../../mock-data/diagram-data";
 
 export interface DataInfo {
   [key: string]: string;
@@ -27,15 +27,14 @@ const RTLTree = () => {
   );
 
   useEffect(() => {
-    const doGetRequest = async () => {
-      let res = await axios.get("http://localhost:3000/artificialIntelligence");
-      let data = res.data;
-      console.log(data);
-      setArtificialIntelligenceData(data);
-    };
+    
     doGetRequest();
   }, []);
-
+  const doGetRequest = async () => {
+    let res = await axios.get("http://localhost:3000/artificialIntelligence");
+    let data = res.data;
+    setArtificialIntelligenceData(data);
+  };
   const getPorts = (root: boolean) => {
     let ports: PointPortModel[] = [
       {
@@ -92,19 +91,19 @@ const RTLTree = () => {
           obj.width = 120;
           obj.style = { fill: "#034d6d", strokeWidth: 1 };
           let key: string = "branch";
-          if ((obj.data as DataInfo)[key] === "root") {
-            obj.shape = { type: "Basic", shape: "Ellipse" };
-            obj.height = 120;
-          } else {
-            obj.shape = {
-              type: "Native",
-              content:
-                '<svg width="120" height="61"><g><line x1="0" x2="120" y1="60" y2="60" stroke-width="1" stroke= "black"></line>' +
-                '<rect x="0" y="0" width="120" height="60" fill="transparent" stroke="none"></rect></g></svg>',
-            };
-            obj.style.strokeWidth = 0;
-            obj.height = 60;
-          }
+          // if ((obj.data as DataInfo)[key] === "root") {
+          //   obj.shape = { type: "Basic", shape: "Ellipse" };
+          //   obj.height = 120;
+          // } else {
+          //   obj.shape = {
+          //     type: "Native",
+          //     content:
+          //       '<svg width="120" height="61"><g><line x1="0" x2="120" y1="60" y2="60" stroke-width="1" stroke= "black"></line>' +
+          //       '<rect x="0" y="0" width="120" height="60" fill="transparent" stroke="none"></rect></g></svg>',
+          //   };
+          //   obj.style.strokeWidth = 0;
+          //   obj.height = 60;
+          // }
           obj.ports = getPorts((obj.data as DataInfo)[key] === "root");
           let annotation: ShapeAnnotationModel = obj.annotations[0];
           if ((obj.data as DataInfo)[key] !== "root") {

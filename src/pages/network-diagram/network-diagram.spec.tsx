@@ -1,7 +1,14 @@
 import { render } from "@testing-library/react";
+import axios, { AxiosResponse } from "axios";
 import SimpleDiagram from "./network-diagram";
-import axios from 'axios';
+
 jest.mock('axios');
+
+jest.mock("@syncfusion/ej2-data",()=>({
+  ...jest.requireActual("@syncfusion/ej2-data"),
+  // getNodeDefaults:jest.fn(),
+  //  getConnectorDefaults:jest.fn((obj)=>{return obj}),
+}))
 
 Object.defineProperty(window, "crypto", {
   value: {
@@ -13,14 +20,19 @@ jest.mock("@syncfusion/ej2-react-diagrams", () => ({
   ...jest.requireActual("@syncfusion/ej2-react-diagrams"),
 }));
 
-jest.mock("React", () => ({
-  ...jest.requireActual("React"),
-  useEffect: jest.fn(),
-}));
+  
 
 describe("networkDiagram", () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+  const mAxiosResponse = {
+    data: { Name: 'smart', branch: 'sam' },
+  } as AxiosResponse;
+  jest.spyOn(axios, 'get').mockResolvedValueOnce(mAxiosResponse);
+  const { baseElement } = render(<SimpleDiagram />);
+
   it("Matches Snapshot", async () => {
-    const { baseElement } = render(<SimpleDiagram />);
     expect(baseElement).toMatchSnapshot();
   });
 });

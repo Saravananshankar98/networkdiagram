@@ -22,15 +22,14 @@ const MindMap =() => {
   const [careerPlaningData , setCareerPlaningData] = useState([]);
 
   useEffect(() => {
-   const doGetRequest = async () => {
-      let res = await axios.get('http://localhost:3000/CareerPlaningData');
-      let data = res.data;
-      console.log(data);
-      setCareerPlaningData(data);
-    }
+  
     doGetRequest();
   }, [])
-
+  const doGetRequest = async () => {
+    let res = await axios.get('http://localhost:3000/CareerPlaningData');
+    let data = res.data;
+    setCareerPlaningData(data);
+  }
   let items: DataManager = new DataManager(
     careerPlaningData as unknown as JSON[]
   );

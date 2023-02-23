@@ -26,15 +26,14 @@ const OrganizationChart =() => {
   const [chiefExecutiveChartData , setChiefExecutiveChartData] = useState([]);
 
   useEffect(() => {
-    const doGetRequest = async () => {
-       let res = await axios.get('http://localhost:3000/chiefExecutiveChartData');
-       let data = res.data;
-       console.log(data);
-       setChiefExecutiveChartData(data);
-     }
+   
      doGetRequest();
    }, []);
-   
+   const doGetRequest = async () => {
+    let res = await axios.get('http://localhost:3000/chiefExecutiveChartData');
+    let data = res.data;
+    setChiefExecutiveChartData(data);
+  }
   let items: DataManager = new DataManager(
     chiefExecutiveChartData as unknown as JSON[]
   );
