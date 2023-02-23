@@ -1,0 +1,19 @@
+import { render } from "@testing-library/react";
+import Radial from "./radial-tree";
+
+Object.defineProperty(window, "crypto", {
+  value: {
+    getRandomValues: (arr: any) => jest.fn().mockImplementation((arr) => 0),
+  },
+});
+
+jest.mock("@syncfusion/ej2-react-diagrams", () => ({
+  ...jest.requireActual("@syncfusion/ej2-react-diagrams"),
+}));
+
+describe("Radial", () => {
+  it("Matches Snapshot", async () => {
+    const { baseElement } = render(<Radial />);
+    expect(baseElement).toMatchSnapshot();
+  });
+});

@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RTLTree Matches Snapshot 1`] = `
+<body>
+  <div>
+    <div
+      style="width: 100%;"
+    >
+      <div
+        class="e-control e-diagram e-lib e-droppable e-tooltip"
+        id="diagram"
+        style="width: 100%; height: 800px; position: relative; overflow: hidden;"
+        tabindex="0"
+      >
+        <div
+          id="diagramcontent"
+          style="width: 100%; height: 800px; position: absolute; left: 0px; top: 0px; overflow: auto; background: transparent;"
+          tabindex="0"
+        >
+          <svg
+            height="0"
+            id="diagram_backgroundLayer_svg"
+            style="position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"
+            width="0"
+          >
+            <g
+              class="e-background-image-layer"
+              id="diagram_backgroundImageLayer"
+            />
+            <g
+              class="e-background-layer"
+              id="diagram_backgroundLayer"
+            >
+              <rect
+                fill="transparent"
+                height="0"
+                id="diagram_backgroundLayerrect"
+                opacity="1"
+                pointer-events="none"
+                rx="0"
+                ry="0"
+                stroke-dasharray="0"
+                stroke-width="1"
+                transform="rotate(0,0,0)"
+                visibility="visible"
+                width="0"
+                x="0"
+                y="0"
+              />
+            </g>
+          </svg>
+          <svg
+            class="e-grid-layer"
+            height="0"
+            id="diagram_gridline_svg"
+            style="position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"
+            width="0"
+          >
+            <g
+              id="diagram_gridline"
+              transform="translate(0,0)"
+            >
+              <rect
+                fill="url(#diagram_pattern)"
+                height="100%"
+                id="diagram_grid_rect"
+                width="100%"
+                x="0"
+                y="0"
+              />
+            </g>
+            <defs
+              id="diagram_grid_pattern_defn"
+            >
+              <pattern
+                height="100"
+                id="diagram_pattern"
+                patternUnits="userSpaceOnUse"
+                width="100"
+                x="0"
+                y="0"
+              />
+            </defs>
+          </svg>
+          <div
+            id="diagram_diagramLayer_div"
+            style="width: 0px; height: 0px; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"
+          >
+            <svg
+              class="e-diagram-layer"
+              height="0"
+              id="diagram_diagramLayer_svg"
+              style="pointer-events: all;"
+              width="0"
+            >
+              <g>
+                <g
+                  id="diagram_diagramLayer"
+                  transform="translate(0,0),scale(1)"
+                />
+              </g>
+            </svg>
+            <svg
+              class="e-native-layer"
+              height="0"
+              id="diagram_nativeLayer_svg"
+              style="position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"
+              width="0"
+            >
+              <g
+                id="diagram_nativeLayer"
+                style="pointer-events: all;"
+                transform="translate(0,0),scale(1)"
+              />
+            </svg>
+          </div>
+          <div
+            class="e-html-layer"
+            id="diagram_htmlLayer"
+            style="width: 0px; height: 0px; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"
+          >
+            <div
+              id="diagram_htmlLayer_div"
+              style="position: absolute; top: 0px; left: 0px; pointer-events: all; transform: translate(0px,0px)scale(1);"
+            />
+          </div>
+          <svg
+            class="e-ports-expand-layer"
+            height="0"
+            id="diagram_diagramPorts_svg"
+            style="position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"
+            width="0"
+          >
+            <g
+              class="e-ports-layer"
+              id="diagram_diagramPorts"
+              style="pointer-events: all;"
+              transform="translate(0,0),scale(1)"
+            />
+            <g
+              class="e-expand-layer"
+              id="diagram_diagramExpander"
+              style="pointer-events: all;"
+              transform="translate(0,0),scale(1)"
+            />
+          </svg>
+          <div
+            id="diagram_diagramAdornerLayer"
+            style="width: 0px; height: 0px; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"
+          >
+            <div
+              class="e-userHandle-layer"
+              id="diagram_diagramUserHandleLayer"
+              style="width: 0px; height: 0px; position: absolute; top: 0px; left: 0px; overflow: hidden; pointer-events: none;"
+            />
+            <svg
+              class="e-adorner-layer"
+              height="0"
+              id="diagram_diagramAdorner_svg"
+              style="pointer-events: none;"
+              width="0"
+            >
+              <g
+                id="diagram_diagramAdorner"
+              >
+                <g
+                  id="diagram_SelectorElement"
+                />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div
+          class="diagram_hiddenUserHandleTemplate"
+          style="width: 0px; height: 0px; visibility: hidden; overflow: hidden;"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    style="position: fixed;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                font-size: 14px;
+                background: #EEF2FF;
+                color: #222222;
+                z-index: 999999999;
+                text-align: left;
+                border: 1px solid #EEEEEE;
+                padding: 10px 11px 10px 50px;
+                border-radius: 8px;
+                font-family: Helvetica Neue, Helvetica, Arial;"
+  >
+    <img
+      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzE5OV80KSI+CjxwYXRoIGQ9Ik0xMiAyMUMxNi45NzA2IDIxIDIxIDE2Ljk3MDYgMjEgMTJDMjEgNy4wMjk0NCAxNi45NzA2IDMgMTIgM0M3LjAyOTQ0IDMgMyA3LjAyOTQ0IDMgMTJDMyAxNi45NzA2IDcuMDI5NDQgMjEgMTIgMjFaIiBzdHJva2U9IiM3MzczNzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xMS4yNSAxMS4yNUgxMlYxNi41SDEyLjc1IiBmaWxsPSIjNjE2MDYzIi8+CjxwYXRoIGQ9Ik0xMS4yNSAxMS4yNUgxMlYxNi41SDEyLjc1IiBzdHJva2U9IiM3MzczNzMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik0xMS44MTI1IDlDMTIuNDMzOCA5IDEyLjkzNzUgOC40OTYzMiAxMi45Mzc1IDcuODc1QzEyLjkzNzUgNy4yNTM2OCAxMi40MzM4IDYuNzUgMTEuODEyNSA2Ljc1QzExLjE5MTIgNi43NSAxMC42ODc1IDcuMjUzNjggMTAuNjg3NSA3Ljg3NUMxMC42ODc1IDguNDk2MzIgMTEuMTkxMiA5IDExLjgxMjUgOVoiIGZpbGw9IiM3MzczNzMiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8xOTlfNCI+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K"
+      style="top: 6px;
+                    position: absolute;
+                    left: 16px;
+                    width: 24px;
+                    height: 24px;"
+    />
+    <span>
+      This application was built using a trial version of Syncfusion Essential Studio. To remove the license validation message permanently, a valid license key must be included.
+    </span>
+     
+    <a
+      href="https://www.syncfusion.com/account/claim-license-key?pl=SmF2YVNjcmlwdA==&vs=MjAuNA=="
+      style="text-decoration: none;color: #0D6EFD;font-weight: 500;"
+    >
+      Claim your free account
+    </a>
+  </div>
+  <div
+    id="measureElement"
+    style="visibility: hidden; height: 0px; width: 0px; overflow: hidden;"
+  >
+    <span
+      style="display: inline-block; line-height: normal;"
+    />
+    <img
+      alt="measureElementImage"
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    />
+    <svg
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <path
+        d=""
+      />
+      <text
+        xml:space="preserve"
+      />
+    </svg>
+  </div>
+</body>
+`;
