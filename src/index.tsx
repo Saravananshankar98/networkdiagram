@@ -1,13 +1,14 @@
-import { registerLicense } from "@syncfusion/ej2-base";
+// import { registerLicense } from "@syncfusion/ej2-base";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-registerLicense(
-  "ORg4AjUWIQA/Gnt2VVhkQlFacldJXnxIeUx0RWFab1t6dFNMZVpBNQtUQF1hSn5Rd0BjXHtac3RQQ2lY"
-);
+// registerLicense(
+//   "ORg4AjUWIQA/Gnt2VVhkQlFacldJXnxIeUx0RWFab1t6dFNMZVpBNQtUQF1hSn5Rd0BjXHtac3RQQ2lY"
+// );
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

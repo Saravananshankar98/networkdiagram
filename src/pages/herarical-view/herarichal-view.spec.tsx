@@ -34,8 +34,8 @@ const data = {
   ],
 };
 describe("HierarchicalModel", () => {
-  it("Matches Snapshot", async () => {
-    const { baseElement } = render(<HierarchicalModel />);
+  it("Matches Snapshot", () => {
+     const { baseElement } = render(<HierarchicalModel />);
     expect(baseElement).toMatchSnapshot();
   });
 });

@@ -17,7 +17,9 @@ jest.mock("@syncfusion/ej2-react-diagrams", () => ({
 }));
 
 describe("Radial", () => {
-  it("Matches Snapshot", async () => {
+
+  
+  it("Matches Snapshot", () => {
     const { baseElement } = render(<Radial />);
     expect(baseElement).toMatchSnapshot();
   });

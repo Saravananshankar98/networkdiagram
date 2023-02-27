@@ -58,6 +58,7 @@ const RTLTree = () => {
     ports[0].horizontalAlignment = "Center";
     return ports;
   };
+
   return (
     <div style={{ width: "100%" }}>
       <DiagramComponent

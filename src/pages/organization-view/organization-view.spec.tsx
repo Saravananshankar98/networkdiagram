@@ -1,6 +1,5 @@
 import { render } from "@testing-library/react";
 import axios, { AxiosResponse } from "axios";
-// import { organizationChartData } from "../../mock-data/organization-chart";
 import OrganizationChart from "./organization-view";
 jest.mock('axios');
 
@@ -18,10 +17,8 @@ jest.mock("@syncfusion/ej2-react-diagrams", () => ({
   ...jest.requireActual("@syncfusion/ej2-react-diagrams"),
 }));
 
-  
-
 describe("OrganizationChart", () => {
-  it("Matches Snapshot", async () => {
+  it("Matches Snapshot", () => {
     const { baseElement } = render(<OrganizationChart />);
     expect(baseElement).toMatchSnapshot();
   });

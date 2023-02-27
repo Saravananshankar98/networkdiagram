@@ -43,11 +43,11 @@ const careerData = [
 ];
 
 describe("MindMap", () => {
-  it("Matches Snapshot", async () => {
-    const mAxiosResponse = {
-      data: careerData,
-    } as AxiosResponse;
-    jest.spyOn(axios, "get").mockResolvedValueOnce(mAxiosResponse);
+  it("Matches Snapshot", () => {
+    //   const mAxiosResponse = {
+    //   data: careerData,
+    // } as AxiosResponse;
+    // jest.spyOn(axios, "get").mockResolvedValueOnce(mAxiosResponse);
     const { baseElement } = render(<MindMap />);
     expect(baseElement).toMatchSnapshot();
   });
