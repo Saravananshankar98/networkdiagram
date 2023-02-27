@@ -31,7 +31,7 @@ const NetworkDiagram = () => {
     let data = res.data;
     setNetworkDiagramData(data);
   };
-  const getNodeDefaults = (obj: NodeModel): NodeModel => {
+  const getNodeDefaults = (obj: NodeModel) => {
     obj.style = { strokeWidth: 2 };
     obj.width = 180;
     obj.height = 60;
@@ -51,8 +51,8 @@ const NetworkDiagram = () => {
   };
 
   const getConnectorDefaults = (
-    connector: any,
-    diagram: any
+    connector: ConnectorModel,
+    diagram :any
   ): ConnectorModel => {
     connector.type = "Bezier";
     let targetNode = diagram.getObject(connector.targetID) as any;
@@ -76,8 +76,6 @@ const NetworkDiagram = () => {
           id="diagram"
           width={"100%"}
           height={"800px"}
-          // nodes={nodes}
-          // connectors={connectors}
           dataSourceSettings={{
             id: "Name",
             parentId: "Category",

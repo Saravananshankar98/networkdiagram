@@ -2,14 +2,11 @@ import { render } from "@testing-library/react";
 import axios, { AxiosResponse } from "axios";
 import MindMap from "./mind-map";
 
-jest.mock('axios');
+jest.mock("axios");
 
-jest.mock("@syncfusion/ej2-data",()=>({
+jest.mock("@syncfusion/ej2-data", () => ({
   ...jest.requireActual("@syncfusion/ej2-data"),
-  // getNodeDefaults:jest.fn(),
-  //  getConnectorDefaults:jest.fn((obj)=>{return obj}),
-}))
-
+}));
 
 Object.defineProperty(window, "crypto", {
   value: {
@@ -21,17 +18,36 @@ jest.mock("@syncfusion/ej2-react-diagrams", () => ({
   ...jest.requireActual("@syncfusion/ej2-react-diagrams"),
 }));
 
-  
+const careerData = [
+  { id: 1, Label: "Career Planning", fill: "Black", branch: "Root" },
+  {
+    id: 2,
+    Label: "Current skills",
+    parentId: 1,
+    branch: "Right",
+    fill: "Blue",
+  },
+  {
+    id: 3,
+    Label: "Technical skills",
+    parentId: 2,
+    branch: "subRight",
+  },
+  {
+    id: 4,
+    Label: "Interpersonal skills",
+    parentId: 2,
+    branch: "subRight",
+  },
+  { id: 5, Label: "Language", parentId: 2, branch: "subRight" },
+];
 
 describe("MindMap", () => {
-  // afterEach(() => {
-  //   jest.restoreAllMocks();
-  // });
   it("Matches Snapshot", async () => {
     const mAxiosResponse = {
-      data: { Name: 'smart', branch: 'sam' },
+      data: careerData,
     } as AxiosResponse;
-    jest.spyOn(axios, 'get').mockResolvedValueOnce(mAxiosResponse);
+    jest.spyOn(axios, "get").mockResolvedValueOnce(mAxiosResponse);
     const { baseElement } = render(<MindMap />);
     expect(baseElement).toMatchSnapshot();
   });
