@@ -4,7 +4,6 @@ import {
   DataBinding,
   Diagram,
   DiagramComponent,
-  HierarchicalTree,
   Inject,
   NodeModel,
   SnapConstraints
@@ -17,30 +16,27 @@ export interface networkInfo {
   Category: string;
   offsetX: number;
   offsetY: number;
-  annotations:string;
+  annotations: string;
 }
 
-const SimpleDiagram = () => {
-  
-  const [networkDiagramData , setNetworkDiagramData] = useState([]);
+const NetworkDiagram = () => {
+  const [networkDiagramData, setNetworkDiagramData] = useState([]);
 
   useEffect(() => {
-   
     doGetRequest();
-  }, [])
-  
+  }, []);
+
   const doGetRequest = async () => {
-    let res = await axios.get('http://localhost:3000/networkDiagram');
+    let res = await axios.get("http://localhost:3000/networkDiagram");
     let data = res.data;
     setNetworkDiagramData(data);
-  }
-  const getNodeDefaults = (obj: any):NodeModel => {
+  };
+  const getNodeDefaults = (obj: NodeModel): NodeModel => {
     obj.style = { strokeWidth: 2 };
     obj.width = 180;
     obj.height = 60;
-    obj.offSetX =(obj.data as networkInfo).offsetX;
-    obj.offSetY =(obj.data as networkInfo).offsetY;
-
+    obj.offsetX = (obj.data as networkInfo).offsetX;
+    obj.offsetY = (obj.data as networkInfo).offsetY;
     if (
       (obj.data as networkInfo).Name === "server" ||
       (obj.data as networkInfo).Name === "pc2" ||
@@ -48,21 +44,27 @@ const SimpleDiagram = () => {
       (obj.data as networkInfo).Name === "Modem"
     ) {
       obj.shape = { type: "Basic", shape: "Rectangle" };
-     
     } else {
       obj.shape = { type: "Flow", shape: "Terminator" };
     }
     return obj;
   };
 
-  const getConnectorDefaults =(connector: any, diagram: any):ConnectorModel => {
+  const getConnectorDefaults = (
+    connector: any,
+    diagram: any
+  ): ConnectorModel => {
     connector.type = "Bezier";
     let targetNode = diagram.getObject(connector.targetID) as any;
-    
-    if ((targetNode.data as networkInfo).Category === "wireless router") {
-      connector.style = { strokeDashArray: "5.5" };
-    } else {
+
+    if (
+      (targetNode.data as networkInfo).Name === "wireless router" ||
+      (targetNode.data as networkInfo).Name === "Modem" ||
+      (targetNode.data as networkInfo).Name === "pc2"
+    ) {
       connector.style = { strokeWidth: 2 };
+    } else {
+      connector.style = { strokeDashArray: "5.5" };
     }
     return connector;
   };
@@ -73,13 +75,15 @@ const SimpleDiagram = () => {
         <DiagramComponent
           id="diagram"
           width={"100%"}
-          height={"645px"}
+          height={"800px"}
           // nodes={nodes}
           // connectors={connectors}
           dataSourceSettings={{
             id: "Name",
             parentId: "Category",
-            dataSource: new DataManager(networkDiagramData as unknown as JSON[]),
+            dataSource: new DataManager(
+              networkDiagramData as unknown as JSON[]
+            ),
             doBinding: (
               nodeModel: NodeModel,
               data: object,
@@ -92,31 +96,27 @@ const SimpleDiagram = () => {
               nodeModel.annotations = [
                 {
                   content: (data as networkInfo).annotations,
-                  width:15
+                  width: 15,
                 },
               ];
             },
           }}
-          layout={{
-            type: "HierarchicalTree",
-            verticalSpacing: 30,
-            horizontalSpacing: 40,
-            enableAnimation: true,
-            orientation: "TopToBottom", // LeftToRight || BottomToTop || RightToLeft || TopToBottom
-          }}
           snapSettings={{ constraints: SnapConstraints.None }}
-          getNodeDefaults={(obj: Node) => {
+          getNodeDefaults={(obj: NodeModel) => {
             return getNodeDefaults(obj);
           }}
-          getConnectorDefaults={(connector: ConnectorModel, diagram: Diagram) => {
+          getConnectorDefaults={(
+            connector: ConnectorModel,
+            diagram: Diagram
+          ) => {
             return getConnectorDefaults(connector, diagram);
           }}
         >
-          <Inject services={[DataBinding, HierarchicalTree]} />
+          <Inject services={[DataBinding]} />
         </DiagramComponent>
       </div>
     </div>
   );
 };
 
-export default SimpleDiagram;
+export default NetworkDiagram;

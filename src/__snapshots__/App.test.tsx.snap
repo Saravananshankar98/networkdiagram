@@ -13,12 +13,12 @@ exports[`App match snapshot 1`] = `
           <div
             class="e-control e-diagram e-lib e-droppable e-tooltip"
             id="diagram"
-            style="width: 100%; height: 645px; position: relative; overflow: hidden;"
+            style="width: 100%; height: 800px; position: relative; overflow: hidden;"
             tabindex="0"
           >
             <div
               id="diagramcontent"
-              style="width: 100%; height: 645px; position: absolute; left: 0px; top: 0px; overflow: auto; background: transparent;"
+              style="width: 100%; height: 800px; position: absolute; left: 0px; top: 0px; overflow: auto; background: transparent;"
               tabindex="0"
             >
               <svg

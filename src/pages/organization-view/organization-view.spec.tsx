@@ -22,9 +22,9 @@ jest.mock("@syncfusion/ej2-react-diagrams", () => ({
   
 
 describe("OrganizationChart", () => {
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
+  // afterEach(() => {
+  //   jest.restoreAllMocks();
+  // });
   it("Matches Snapshot", async () => {
     const mAxiosResponse = {
       data: { Name: 'smart', branch: 'sam' },

@@ -194,14 +194,14 @@
       "Name": "laptop1",
       "Category": "wireless router",
       "offsetX": 450,
-      "offsetY": 450,
+      "offsetY": 500,
     "annotations": "laptop1 IP:192.3.1.2"
     },
     {
       "Name": "laptop2",
       "Category": "wireless router",
       "offsetX": 650,
-      "offsetY": 450,
+      "offsetY": 500,
           "annotations": "laptop2 IP:192.4.1.2"
 
   
@@ -210,7 +210,7 @@
       "Name": "smartPhone",
       "Category": "wireless router",
       "offsetX": 850,
-      "offsetY": 450,
+      "offsetY": 500,
       
           "annotations": "Smart Phone IP:192.3.1.2"
 
@@ -219,7 +219,7 @@
       "Name": "pc1",
       "Category": "wireless router",
       "offsetX": 1050,
-      "offsetY": 450,
+      "offsetY": 500,
           "annotations": "pc1 IP:192.3.2.2"
 
     },
@@ -227,7 +227,7 @@
       "Name": "wireless printer",
       "Category": "wireless router",
       "offsetX": 1250,
-      "offsetY": 450,
+      "offsetY": 500,
           "annotations": "Wireless Printer"
 
     }

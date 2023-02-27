@@ -70,7 +70,7 @@ const HierarchicalModel = () => {
           id: "Name",
           parentId: "Category",
           dataSource: new DataManager(
-            hierarchicalTree as unknown as JSON[]
+            hierarchicalTreeData as unknown as JSON[]
           ),
           doBinding: (nodeModel: NodeModel, data: object, diagram: Diagram) => {
             nodeModel.shape = {

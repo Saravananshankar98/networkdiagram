@@ -2,9 +2,10 @@ import { cleanup, render } from "@testing-library/react";
 import axios from "axios";
 
 import HierarchicalModel from "./herarical-view";
-afterEach(cleanup);
+// afterEach(cleanup);
 jest.mock("axios");
-const getResource = jest.fn();
+// const getResource = jest.fn();
+
 jest.mock("@syncfusion/ej2-data", () => ({
   ...jest.requireActual("@syncfusion/ej2-data"),
 }));
@@ -39,13 +40,13 @@ describe("HierarchicalModel", () => {
   // afterEach(() => {
   //   jest.restoreAllMocks();
   // });
-  const url = "http://localhost:3000/hierarchicalTree";
-  const onComplete = jest.fn();
+  // const url = "http://localhost:3000/hierarchicalTree";
+  // const onComplete = jest.fn();
   // const data = {};
 
-  beforeEach(() => {
-    axios.get.mockResolvedValue(data);
-  });
+  // beforeEach(() => {
+  //   axios.get.mockResolvedValue(data);
+  // });
   it("Matches Snapshot", async () => {
     // const mAxiosResponse = {
     //   data: hierarchalData,
@@ -56,9 +57,4 @@ describe("HierarchicalModel", () => {
     const { baseElement } = render(<HierarchicalModel />);
     expect(baseElement).toMatchSnapshot();
   });
-
-  // it("should call axios get with given url", () => {
-  //   getResource(url, onComplete);
-  //   expect(axios.get).toBeCalledWith(url);
-  // });
 });
