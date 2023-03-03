@@ -19,8 +19,9 @@ export interface networkInfo {
   annotations: string;
 }
 
-const NetworkDiagram = () => {
+const NetworkDiagram = (networkData:any) => {
   const [networkDiagramData, setNetworkDiagramData] = useState([]);
+console.log("networkData",networkData);
 
   useEffect(() => {
     doGetRequest();
@@ -80,7 +81,7 @@ const NetworkDiagram = () => {
             id: "Name",
             parentId: "Category",
             dataSource: new DataManager(
-              networkDiagramData as unknown as JSON[]
+              networkData?.networkData as unknown as JSON[]
             ),
             doBinding: (
               nodeModel: NodeModel,

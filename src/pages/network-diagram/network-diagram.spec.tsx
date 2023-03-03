@@ -1,14 +1,86 @@
-import { render } from "@testing-library/react";
-import axios, { AxiosResponse } from "axios";
+import { cleanup, render } from "@testing-library/react";
 import NetworkDiagram from "./network-diagram";
-import * as api from "../../api";
-// import MockAdapter from "axios-mock-adapter";
+import {
+  DiagramComponent
+} from "@syncfusion/ej2-react-diagrams";
 
-jest.mock("axios");
-jest.mock("../../api");
-// jest.mock("axios-mock-adapter/types",jest.fn());
+const networkData = {
+  networkDiagram: [
+    {
+      Name: "server",
+      offsetX: 850,
+      offsetY: 55,
+      annotations: "server IP:192.1.1.1",
+    },
+    {
+      Name: "Modem",
+      offsetX: 850,
+      offsetY: 160,
+      Category: "server",
+      annotations: "Modem",
+    },
+    {
+      Name: "wireless router",
+      Category: "Modem",
+      offsetX: 850,
+      offsetY: 280,
+      annotations: "wireless router",
+    },
+    {
+      Name: "pc2",
+      Category: "wireless router",
+      offsetX: 1250,
+      offsetY: 280,
+      annotations: "pc2 IP:192.3.1.2",
+    },
+    {
+      Name: "laptop1",
+      Category: "wireless router",
+      offsetX: 450,
+      offsetY: 500,
+      annotations: "laptop1 IP:192.3.1.2",
+    },
+    {
+      Name: "laptop2",
+      Category: "wireless router",
+      offsetX: 650,
+      offsetY: 500,
+      annotations: "laptop2 IP:192.4.1.2",
+    },
+    {
+      Name: "smartPhone",
+      Category: "wireless router",
+      offsetX: 850,
+      offsetY: 500,
+
+      annotations: "Smart Phone IP:192.3.1.2",
+    },
+    {
+      Name: "pc1",
+      Category: "wireless router",
+      offsetX: 1050,
+      offsetY: 500,
+      annotations: "pc1 IP:192.3.2.2",
+    },
+    {
+      Name: "wireless printer",
+      Category: "wireless router",
+      offsetX: 1250,
+      offsetY: 500,
+      annotations: "Wireless Printer",
+    },
+  ],
+};
+jest.mock("axios", () => ({
+  get: jest.fn(() => Promise.resolve({ networkData })),
+  default: jest.fn(() => Promise.resolve({ networkData })),
+}));
+
 jest.mock("@syncfusion/ej2-data", () => ({
   ...jest.requireActual("@syncfusion/ej2-data"),
+  dataManager:jest.fn(()=>jest.fn()),
+  dataSource:jest.fn(),
+  doBinding:jest.fn()
 }));
 
 Object.defineProperty(window, "crypto", {
@@ -17,54 +89,35 @@ Object.defineProperty(window, "crypto", {
   },
 });
 
-jest.mock("@syncfusion/ej2-react-diagrams", () => ({
+jest.mock("@syncfusion/ej2-react-diagrams", () => {
+  // ...jest.requireActual("@syncfusion/ej2-react-diagrams"),
+  const {DiagramComponent} = jest.requireActual("@syncfusion/ej2-react-diagrams");
+return {
   ...jest.requireActual("@syncfusion/ej2-react-diagrams"),
-}));
-// jest.mock("axios-mock-adapter/types", () => ({
-//   ...jest.requireActual("axios-mock-adapter/types"),
-// }));
+  DiagramComponent: (Props:DiagramComponent) => {
+    return <DiagramComponent {...Props}/>
+  }
+}
+});
 
-const networkData = [
-  {
-    Name: "server",
-    offsetX: 850,
-    offsetY: 55,
-    annotations: "server IP:192.1.1.1",
-  },
-  {
-    Name: "Modem",
-    offsetX: 850,
-    offsetY: 160,
-    Category: "server",
-    annotations: "Modem",
-  },
-  {
-    Name: "wireless router",
-    Category: "Modem",
-    offsetX: 850,
-    offsetY: 280,
-    annotations: "wireless router",
-  },
-];
+
+// jest.mock("@mui/x-data-grid", () => {
+//   const { DataGrid } = jest.requireActual("@mui/x-data-grid");
+//   return {
+//     ...jest.requireActual("@mui/x-data-grid"),
+//     DataGrid: (props: DataGridProps) => {
+//       return <DataGrid {...props} disableVirtualization />;
+//     }
+//   };
+// });
 
 describe("networkDiagram", () => {
-  beforeEach(() => jest.clearAllMocks());
-  const mAxiosResponse = {
-    data: networkData,
-  } as AxiosResponse;
-  // api.getNetworkDiagramFromApi();
-  jest.spyOn(axios, 'get').mockResolvedValueOnce(mAxiosResponse);
-  // moxios.stubRequest("http://localhost:3000/networkDiagram", {
-  //   status: 200,
-  //   response: {
-  //     data: networkData,
-  //   },
-  // });
-  const { baseElement } = render(<NetworkDiagram />);
+  afterEach(cleanup);
+  const { baseElement } = render(
+    <NetworkDiagram networkData={networkData} />
+  );
 
   it("Matches Snapshot", () => {
-    // var mock = new MockAdapter(axios);
-        // mock.onGet('http://localhost:3000/networkDiagram').reply(200, networkData);
     expect(baseElement).toMatchSnapshot();
   });
 });

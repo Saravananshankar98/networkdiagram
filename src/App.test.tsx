@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import axios from "axios";
 import App from "./App";
 
@@ -22,33 +22,10 @@ jest.mock("@syncfusion/ej2-react-diagrams", () => ({
   ...jest.requireActual("@syncfusion/ej2-react-diagrams"),
 }));
 
-const networkData = [
-  {
-    Name: "server",
-    offsetX: 850,
-    offsetY: 55,
-    annotations: "server IP:192.1.1.1",
-  },
-  {
-    Name: "Modem",
-    offsetX: 850,
-    offsetY: 160,
-    Category: "server",
-    annotations: "Modem",
-  },
-  {
-    Name: "wireless router",
-    Category: "Modem",
-    offsetX: 850,
-    offsetY: 280,
-    annotations: "wireless router",
-  },
-];
-// const mock = new MockAdapter(axios);
+afterEach(cleanup);
 
 describe("App", () => {
   it("match snapshot", () => {
-    axios.get("http://localhost:3000/networkDiagram");
     const { baseElement } = render(<App />);
     expect(baseElement).toMatchSnapshot();
   });
